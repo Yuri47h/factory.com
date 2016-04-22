@@ -83,6 +83,7 @@ abstract class CActiveRecord extends CModel
 		$this->attachBehaviors($this->behaviors());
 		$this->afterConstruct();
 	}
+        
 
 	/**
 	 * Initializes this model.

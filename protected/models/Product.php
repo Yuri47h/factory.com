@@ -46,7 +46,8 @@ class Product extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'resource' => array(self::MANY_MANY, 'Resource', 'relation(kod_p, kod_r)'),
+			'relation' => array(self::HAS_MANY, 'Relation', 'kod_p'),
+			'resource' => array(self::HAS_MANY, 'Resource', 'kod_r', 'through'=>'relation'),
 		);
 	}
         
@@ -96,7 +97,7 @@ class Product extends CActiveRecord
 	}
         
         //метод для відображення ресурсів
-        public function findresource() {
+        /*public function findresource() {
             $arr;
             if ($this->resource===Array()){
             return 'ресурсів немає';
@@ -107,6 +108,20 @@ class Product extends CActiveRecord
             return implode(", ",$arr);  
             
             }
+        }*/
+        public function findresource() {
+             $arr;
+             
+            $res = Product::model()->with('resource')->findByPk($this->kod_p);
+            if($res->resource===Array()){
+            return 'ресурсів немає';
+            } else {
+                foreach ($res->resource as $value){
+                    $arr[] = $value['name'];
+                }
+                return   implode(", ",$arr);
+            }
+            
         }
         
     

@@ -25,10 +25,9 @@ $this->menu=array(
 		'kod_p',
 		'name',
                  array(               
-            'label'=>'Ресурси',
-             
+            'label'=>'Ресурси',             
             'value'=>$model->findresource(),
-           // 'value'=> print_r($model->resource),
+            
             
              
         ),

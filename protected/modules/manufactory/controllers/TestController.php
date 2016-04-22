@@ -1,6 +1,6 @@
 <?php
 
-class ProductController extends Controller
+class TestController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -169,4 +169,8 @@ class ProductController extends Controller
 			Yii::app()->end();
 		}
 	}
+        public function addnew(){
+            
+            
+        }
 }
