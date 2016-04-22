@@ -13,6 +13,10 @@
  */
 class Product extends CActiveRecord
 {
+    public $kod_r;
+   
+    public $quantity;
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -66,6 +70,10 @@ class Product extends CActiveRecord
 			'id' => 'ID',
 			'kod_p' => 'Код продукту',
 			'name' => 'Назва продукту',
+                    // додаємо дочірні поля
+			'kod_r' => 'Код ресурсу',
+			'quantity' => 'Кількість для виготовлення одиниці продукції',
+                        
 		);
 	}
 
@@ -110,23 +118,38 @@ class Product extends CActiveRecord
             }
         }*/
         public function findresource() {
-             $arr;
-             
-            $res = Product::model()->with('resource')->findByPk($this->kod_p);
-            if($res->resource===Array()){
-            return 'ресурсів немає';
-            } else {
-                foreach ($res->resource as $value){
-                    $arr[] = $value['name'];
-                }
-                return   implode(", ",$arr);
+           
+            foreach ($this->resource as $one){
+            $arr[] = $one->name;
             }
+             return   implode(", ",$arr);
+            
+           
             
         }
-        
-    
+          public function afterSave() {
+            parent::afterSave();
+            if ($this->isNewRecord){
+               
+                // Якщо ми додаємо товар,  то потрібно додати й необхідні зв"язки з ресурами
+                $relation = new Relation();
+                $relation->quantity = $_POST['Product']['quantity'];
+                $relation->kod_r = $_POST['Product']['kod_r'];
+                $relation->kod_p = $_POST['Product']['kod_p'];
+                $relation->save();    
+              
+            } else {
+                Relation::model()->updateAll(array(
+                    'kod_p' => $_POST['Product']['kod_p'],
+                    'kod_r' => $_POST['Product']['kod_r'],      
+                    'quantity' => $_POST['Product']['quantity'],                    
+                ), 'kod_p=:kod_p', array(':kod_p'=>$this->kod_p));
+            }
+        }
+      
 
-	/**
+        
+        /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.

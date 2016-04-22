@@ -1,4 +1,5 @@
 <?php
+
 /* @var $this ProductController */
 /* @var $model Product */
 /* @var $form CActiveForm */
@@ -13,11 +14,12 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
+    
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary(array($model)); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'kod_p'); ?>
@@ -32,14 +34,26 @@
 	</div>
         <div class="row">
            <hr />
-            <?php  $resource = CHtml::listData($allResoruce, 'kod_r','name'); ?>
-            <?php echo $form->labelEx($modelResource,'name'); ?>
-            <?php echo $form->dropDownList($modelResource,'kod_r',$resource); ?>
-            <?php echo $form->error($modelResource,'name'); ?>
+           <?php if(isset($modelRelation)){
+                $resource = CHtml::listData($allResource, 'kod_r','name');
+                echo $form->labelEx($model,'kod_r');
+                echo $form->dropDownList($model,'kod_r',$resource);
+                echo $form->error($model,'name');
               
-            <?php echo $form->labelEx($modelResource,'quantity'); ?>
-            <?php echo $form->textField($modelResource,'quantity'); ?>
-            <?php echo $form->error($modelResource,'quantity'); ?>
+                 echo $form->labelEx($model,'quantity');
+                echo $form->textField($model,'quantity');
+                 echo $form->error($model,'quantity');              
+                                            
+               
+           } else { ?>
+            <?php  $resource = CHtml::listData($allResource, 'kod_r','name'); ?>
+            <?php echo $form->labelEx($model,'kod_r'); ?>
+            <?php echo $form->dropDownList($model,'kod_r',$resource); ?>
+            <?php echo $form->error($model,'name'); ?>
+              
+            <?php echo $form->labelEx($model,'quantity'); ?>
+            <?php echo $form->textField($model,'quantity'); ?>
+           <?php echo $form->error($model,'quantity');} ?>
 		
 	</div>
 

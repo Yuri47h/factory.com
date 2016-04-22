@@ -15,4 +15,4 @@ $this->menu=array(
 
 <h1>Create Product</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'allResoruce'=>$allResoruce, 'modelResource'=>$modelResource)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'allResource'=>$allResource, 'modelRelation'=>$modelRelation)); ?>

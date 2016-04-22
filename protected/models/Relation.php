@@ -47,9 +47,14 @@ class Relation extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'kodR' => array(self::BELONGS_TO, 'Resource', 'kod_r'),
-			'kodP' => array(self::BELONGS_TO, 'Product', 'kod_p'),
+			'resource' => array(self::BELONGS_TO, 'Resource', 'kod_r'),
+			'product' => array(self::BELONGS_TO, 'Product', 'kod_p'),
 		);
+	}
+        
+        public function primaryKey()
+	{
+		return 'kod_p';
 	}
 
 	/**
@@ -59,9 +64,9 @@ class Relation extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'kod_p' => 'Kod P',
-			'kod_r' => 'Kod R',
-			'quantity' => 'Quantity',
+			'kod_p' => 'Продукт',
+			'kod_r' => 'Ресурс',
+			'quantity' => 'Кілкість',
 		);
 	}
 

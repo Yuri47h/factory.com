@@ -62,7 +62,33 @@ class ProductController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Product;
+            $model= new Product;
+       
+       
+            $allResource = Resource::model()->findAll();
+                if(isset($_POST['Product']))
+		{                  
+                    $model->attributes=$_POST['Product'];
+                  
+                    if($model->save()){
+				$this->redirect(array('view','id'=>$model->kod_p));
+		}
+                  
+                }
+		
+            
+            $this->render('create',array(
+			'model'=>$model,
+                        'modelRelation'=>$modelRelation,
+                        'allResource'=>$allResource,
+                        
+                       
+		));
+            
+            
+            
+            
+            /*$model=new Product;
                 $allResoruce = Resource::model()->findAll();
                 $modelResource = new Resource;
 
@@ -81,7 +107,7 @@ class ProductController extends Controller
 			'model'=>$model,
                         'allResoruce'=>$allResoruce,
                         'modelResource'=>$modelResource,
-		));
+		));*/
 	}
 
 	/**
@@ -92,7 +118,9 @@ class ProductController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+                $allResource = Resource::model()->findAll();
+                $modelRelation = Relation::model()->findAllByPk($id);
+               
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -105,6 +133,8 @@ class ProductController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+                        'allResource'=>$allResource,
+                        'modelRelation'=>$modelRelation,
 		));
 	}
 
