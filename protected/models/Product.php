@@ -118,14 +118,28 @@ class Product extends CActiveRecord
        public function afterSave() {
             parent::afterSave();
             if ($this->isNewRecord) {
-
+                $x=0;
                 // Якщо ми додаємо товар,  то потрібно додати й необхідні зв"язки з ресурами
-                $relation = new Relation();
+               
+                //функція рахує кількість існуючих значнь quantity
+                function NumberArr($arr, $x) {
+                    if (($arr['quantity'.$x])!=''){
+                        $x++;
+                        return NumberArr($arr, $x);
+                    }
+                    else return $x;
+                }
+                $number = NumberArr($_POST, $x);
+                //проходимо циклом по існуючим значенням всім значенням кількості та коду ресурсу і додаємо це в таблицю relation
+                for($i = 0; $i<$number; $i++){
+                    
+                    $relation = new Relation();
+                    $relation->quantity = $_POST['quantity'.$i];
+                    $relation->kod_r = $_POST['kod_r'.$i];
+                    $relation->kod_p = $_POST['Product']['kod_p'];
+                    $relation->save();
+                }
                 
-                $relation->quantity = $_POST['Product']['quantity'];
-                $relation->kod_r = $_POST['Product']['kod_r'];
-                $relation->kod_p = $_POST['Product']['kod_p'];
-                $relation->save();
             }   
             // якщо продукт оновлюється
             else {  

@@ -56,18 +56,24 @@
                 echo "<hr>";
                }
                
-            } else { ?>
-                <?php  $resource = CHtml::listData($allResource, 'kod_r','name'); ?>
-                <?php echo $form->labelEx($model,'kod_r'); ?>
-                <?php echo $form->dropDownList($model,'kod_r',$resource); ?>
-                <?php echo $form->error($model,'name'); ?>
-
-                <?php echo $form->labelEx($model,'quantity'); ?>
-                <?php echo $form->textField($model,'quantity'); ?>
-                <?php echo $form->error($model,'quantity');
+            } else { 
+                $i = 0;
+                foreach ($allResource as $one){
+                echo '<div class="row_resource">';
                 
+                $resource = CHtml::listData($allResource, 'kod_r','name');
+                
+                echo $form->labelEx($model,'kod_r');
+                echo $form->dropDownList($model,'kod_r',$resource, array('empty'=>'--Виберіть ресус--','name'=>'kod_r'.$i ));
+                echo $form->error($model,'name');
+
+                echo $form->labelEx($model,'quantity');
+                echo $form->textField($model,'quantity', array("name"=>'quantity'.$i));
+                echo $form->error($model,'quantity');
+                echo '</div>';
+                $i++;
            
-            } ?>
+                }} ?>
 		
 	</div>
 
