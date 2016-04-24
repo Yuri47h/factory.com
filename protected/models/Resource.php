@@ -28,6 +28,7 @@ class Resource extends CActiveRecord
         public function primaryKey()
 	{
 		return 'kod_r';
+		
 	}
         
 	public function rules()

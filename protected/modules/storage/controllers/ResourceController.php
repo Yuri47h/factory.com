@@ -70,8 +70,9 @@ class ResourceController extends Controller
 		if(isset($_POST['Resource']))
 		{
 			$model->attributes=$_POST['Resource'];
+                        
 			if($model->save())
-				$this->redirect(array('view','id'=>$id));
+				$this->redirect(array('index'));
 		}
 
 		$this->render('create',array(
@@ -95,7 +96,7 @@ class ResourceController extends Controller
 		{
 			$model->attributes=$_POST['Resource'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$id));
+				$this->redirect(array('view','id'=>$this->model->id));
 		}
 
 		$this->render('update',array(
@@ -146,7 +147,7 @@ class ResourceController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Resource::model()->findByPk($id);
+		$model=Resource::model()->findByPk(array($id));
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

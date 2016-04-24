@@ -10239,3 +10239,199 @@ Stack trace:
 REQUEST_URI=/index.php/manufactory/product/create
 in Z:\home\factory.com\www\protected\modules\manufactory\controllers\ProductController.php (74)
 in Z:\home\factory.com\www\index.php (13)
+2016/04/24 19:07:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php:151
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(55): ResourceController->loadModel('')
+#1 [internal function]: ResourceController->actionView('')
+#2 Z:\home\factory.com\www\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(ResourceController), Array)
+#3 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ResourceController), Object(ReflectionMethod), Array)
+#4 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('view')
+#13 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#14 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php/storage/resource/view/id
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
+2016/04/24 19:07:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php:151
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(55): ResourceController->loadModel('')
+#1 [internal function]: ResourceController->actionView('')
+#2 Z:\home\factory.com\www\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(ResourceController), Array)
+#3 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ResourceController), Object(ReflectionMethod), Array)
+#4 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('view')
+#13 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#14 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php/storage/resource/view/id
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
+2016/04/24 19:10:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php:151
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(55): ResourceController->loadModel('')
+#1 [internal function]: ResourceController->actionView('')
+#2 Z:\home\factory.com\www\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(ResourceController), Array)
+#3 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ResourceController), Object(ReflectionMethod), Array)
+#4 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('view')
+#13 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#14 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php/storage/resource/view/id
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
+2016/04/24 19:11:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php:151
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(55): ResourceController->loadModel('')
+#1 [internal function]: ResourceController->actionView('')
+#2 Z:\home\factory.com\www\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(ResourceController), Array)
+#3 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ResourceController), Object(ReflectionMethod), Array)
+#4 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('view')
+#13 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#14 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php/storage/resource/view/id
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
+2016/04/24 19:11:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php:151
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(55): ResourceController->loadModel('')
+#1 [internal function]: ResourceController->actionView('')
+#2 Z:\home\factory.com\www\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(ResourceController), Array)
+#3 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ResourceController), Object(ReflectionMethod), Array)
+#4 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('view')
+#13 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#14 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php/storage/resource/view/id
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
+2016/04/24 19:14:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php:151
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(55): ResourceController->loadModel('')
+#1 [internal function]: ResourceController->actionView('')
+#2 Z:\home\factory.com\www\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(ResourceController), Array)
+#3 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ResourceController), Object(ReflectionMethod), Array)
+#4 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('view')
+#13 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#14 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php/storage/resource/view/id
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
+2016/04/24 19:15:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php:151
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(55): ResourceController->loadModel('resource')
+#1 [internal function]: ResourceController->actionView('resource')
+#2 Z:\home\factory.com\www\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(ResourceController), Array)
+#3 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ResourceController), Object(ReflectionMethod), Array)
+#4 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('view')
+#13 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#14 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php/storage/resource/view/id/resource
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
+2016/04/24 19:16:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php:151
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(55): ResourceController->loadModel('resource')
+#1 [internal function]: ResourceController->actionView('resource')
+#2 Z:\home\factory.com\www\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(ResourceController), Array)
+#3 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ResourceController), Object(ReflectionMethod), Array)
+#4 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#11 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('view')
+#13 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#14 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#15 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php/storage/resource/view/id/resource
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
+2016/04/24 19:17:10 [error] [exception.CException] exception 'CException' with message 'Property "ResourceController.model" is not defined.' in Z:\home\factory.com\www\framework\base\CComponent.php:130
+Stack trace:
+#0 Z:\home\factory.com\www\protected\modules\storage\controllers\ResourceController.php(74): CComponent->__get('model')
+#1 Z:\home\factory.com\www\framework\web\actions\CInlineAction.php(49): ResourceController->actionCreate()
+#2 Z:\home\factory.com\www\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#4 Z:\home\factory.com\www\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\factory.com\www\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#6 Z:\home\factory.com\www\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#7 Z:\home\factory.com\www\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#8 Z:\home\factory.com\www\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\factory.com\www\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 Z:\home\factory.com\www\framework\web\CWebApplication.php(282): CController->run('create')
+#11 Z:\home\factory.com\www\framework\web\CWebApplication.php(141): CWebApplication->runController('storage/resourc...')
+#12 Z:\home\factory.com\www\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#13 Z:\home\factory.com\www\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/index.php/storage/resource/create
+HTTP_REFERER=http://factory.com/index.php/storage/resource/create
+---
