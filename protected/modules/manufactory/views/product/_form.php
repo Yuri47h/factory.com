@@ -33,27 +33,41 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
         <div class="row">
-           <hr />
-           <?php if(isset($modelRelation)){
-                $resource = CHtml::listData($allResource, 'kod_r','name');
-                echo $form->labelEx($model,'kod_r');
-                echo $form->dropDownList($model,'kod_r',$resource);
-                echo $form->error($model,'name');
-              
-                 echo $form->labelEx($model,'quantity');
-                echo $form->textField($model,'quantity');
-                 echo $form->error($model,'quantity');              
-                                            
+           <hr /> 
+           <!--якщо оновити перевіряємо чи передана модель $modelRelation, вона передається тільки у котроллері Update-->
+           <?php $i=0;
+                if(isset($modelRelation)){
                
-           } else { ?>
-            <?php  $resource = CHtml::listData($allResource, 'kod_r','name'); ?>
-            <?php echo $form->labelEx($model,'kod_r'); ?>
-            <?php echo $form->dropDownList($model,'kod_r',$resource); ?>
-            <?php echo $form->error($model,'name'); ?>
-              
-            <?php echo $form->labelEx($model,'quantity'); ?>
-            <?php echo $form->textField($model,'quantity'); ?>
-           <?php echo $form->error($model,'quantity');} ?>
+               foreach ($modelRelation as $one){
+                 
+                $model->quantity=$one->quantity;
+                $model->kod_r=$one->kod_r;
+                
+                echo $form->labelEx($model,'kod_r');
+                $resource = CHtml::listData($allResource, 'kod_r','name');
+                echo CHtml::dropDownList("resources[$i][kod_r]",$model->kod_r, $resource);
+                        
+                echo $form->labelEx($model,'quantity');
+                echo CHtml::textField("resources[$i][quantity]",$model->quantity );
+                echo CHtml::textField("resources[$i][bufer_kod_r]",$model->kod_r, array('style'=>'display:none'));
+                echo CHtml::textField("resources[$i][bufer_kod_p]",$model->kod_p, array('style'=>'display:none'));
+
+                $i++;
+                echo "<hr>";
+               }
+               
+            } else { ?>
+                <?php  $resource = CHtml::listData($allResource, 'kod_r','name'); ?>
+                <?php echo $form->labelEx($model,'kod_r'); ?>
+                <?php echo $form->dropDownList($model,'kod_r',$resource); ?>
+                <?php echo $form->error($model,'name'); ?>
+
+                <?php echo $form->labelEx($model,'quantity'); ?>
+                <?php echo $form->textField($model,'quantity'); ?>
+                <?php echo $form->error($model,'quantity');
+                
+           
+            } ?>
 		
 	</div>
 

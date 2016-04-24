@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Product', 'url'=>array('index')),
-	array('label'=>'Create Product', 'url'=>array('create')),
-	array('label'=>'View Product', 'url'=>array('view', 'id'=>$model->kod_p)),
-	array('label'=>'Manage Product', 'url'=>array('admin')),
+	array('label'=>'Журнал продукцї', 'url'=>array('index')),
+	array('label'=>'Створити продукт', 'url'=>array('create')),
+	array('label'=>'Перегладя цього продукту', 'url'=>array('view', 'id'=>$model->kod_p)),
+	
 );
 ?>
 

@@ -63,9 +63,9 @@ class ProductController extends Controller
 	public function actionCreate()
 	{
             $model= new Product;
-       
-       
             $allResource = Resource::model()->findAll();
+            
+            
                 if(isset($_POST['Product']))
 		{                  
                     $model->attributes=$_POST['Product'];

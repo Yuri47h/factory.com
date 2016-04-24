@@ -16,6 +16,7 @@ class Product extends CActiveRecord
     public $kod_r;
    
     public $quantity;
+ 
     
 	/**
 	 * @return string the associated database table name
@@ -71,7 +72,7 @@ class Product extends CActiveRecord
 			'kod_p' => 'Код продукту',
 			'name' => 'Назва продукту',
                     // додаємо дочірні поля
-			'kod_r' => 'Код ресурсу',
+			'kod_r' => 'Ресурс',
 			'quantity' => 'Кількість для виготовлення одиниці продукції',
                         
 		);
@@ -104,52 +105,46 @@ class Product extends CActiveRecord
 		));
 	}
         
-        //метод для відображення ресурсів
-        /*public function findresource() {
-            $arr;
-            if ($this->resource===Array()){
-            return 'ресурсів немає';
-            } else {
-                foreach ($this->resource as $value){
-             $arr[] = $value['name'];
-            }
-            return implode(", ",$arr);  
-            
-            }
-        }*/
+        //метод повертає перелік ресурсів ресурсів для виготовлення товару
+       
         public function findresource() {
-           
-            foreach ($this->resource as $one){
-            $arr[] = $one->name;
-            }
-             return   implode(", ",$arr);
-            
-           
-            
-        }
-          public function afterSave() {
+
+           foreach ($this->resource as $one) {
+               $arr[] = $one->name;
+           }
+           return implode(", ", $arr);
+       }
+
+       public function afterSave() {
             parent::afterSave();
-            if ($this->isNewRecord){
-               
+            if ($this->isNewRecord) {
+
                 // Якщо ми додаємо товар,  то потрібно додати й необхідні зв"язки з ресурами
                 $relation = new Relation();
+                
                 $relation->quantity = $_POST['Product']['quantity'];
                 $relation->kod_r = $_POST['Product']['kod_r'];
                 $relation->kod_p = $_POST['Product']['kod_p'];
-                $relation->save();    
-              
-            } else {
-                Relation::model()->updateAll(array(
-                    'kod_p' => $_POST['Product']['kod_p'],
-                    'kod_r' => $_POST['Product']['kod_r'],      
-                    'quantity' => $_POST['Product']['quantity'],                    
-                ), 'kod_p=:kod_p', array(':kod_p'=>$this->kod_p));
+                $relation->save();
+            }   
+            // якщо продукт оновлюється
+            else {  
+                foreach ($_POST['resources'] as $one) {
+                    //проходимо циклом по базі resources і оновлюємо записи по вибраних критеріях
+                    $criteria = new CDbCriteria();
+                    $criteria->condition = "kod_p =".$one['bufer_kod_p'];
+                    $criteria->addCondition("kod_r =".$one['bufer_kod_r'], 'AND');
+                    
+                    Relation::model()->updateAll(array(
+                       'kod_p' => $this->kod_p,
+                       'kod_r' => $one['kod_r'],
+                       'quantity' => $one['quantity'],
+                           ), $criteria);
+                }
             }
         }
-      
 
-        
-        /**
+       /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.

@@ -28,11 +28,11 @@ class ResourceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','delete'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','delete'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -71,7 +71,7 @@ class ResourceController extends Controller
 		{
 			$model->attributes=$_POST['Resource'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$id));
 		}
 
 		$this->render('create',array(
@@ -95,7 +95,7 @@ class ResourceController extends Controller
 		{
 			$model->attributes=$_POST['Resource'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$id));
 		}
 
 		$this->render('update',array(

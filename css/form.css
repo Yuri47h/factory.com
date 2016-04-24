@@ -57,7 +57,8 @@ div.form label
 {
 	font-weight: bold;
 	font-size: 0.9em;
-	display: block;
+	/*display: block;*/
+	display: inherit;
 }
 
 div.form .row

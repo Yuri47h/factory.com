@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Журнал ресурсів', 'url'=>array('index')),
+
 	array('label'=>'Додати ресурс', 'url'=>array('create')),
 );
 
