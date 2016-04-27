@@ -6,7 +6,7 @@ class ResourceController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/mycolumn'; //Підключаємо своє меню
 
 	/**
 	 * @return array action filters
@@ -28,16 +28,8 @@ class ResourceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','delete'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','delete'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','delete'),
-				'users'=>array('index'),
+				'actions'=>array('index','view', 'create', 'update', 'delete'),
+				'roles'=>array('storage','admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -69,8 +61,10 @@ class ResourceController extends Controller
 
 		if(isset($_POST['Resource']))
 		{
-			$model->attributes=$_POST['Resource'];
-                        
+                    $model->attributes=$_POST['Resource'];
+                  /*  print_r($_POST['Resource']);
+			
+                        if(isset($this->loadModel($_POST['Resource'])))*/
 			if($model->save())
 				$this->redirect(array('index'));
 		}

@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Resource', 'url'=>array('index')),
-	array('label'=>'Create Resource', 'url'=>array('create')),
+	array('label'=>'Журнал ресурсів', 'url'=>array('index')),
+	array('label'=>'Додати ресурс', 'url'=>array('create')),
 	array('label'=>'Update Resource', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete Resource', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Resource', 'url'=>array('admin')),

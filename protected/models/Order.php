@@ -1,62 +1,52 @@
 <?php
 
 /**
- * This is the model class for table "resource".
+ * This is the model class for table "order".
  *
- * The followings are the available columns in table 'resource':
+ * The followings are the available columns in table 'order':
  * @property integer $id
- * @property integer $kod_r
- * @property string $name
+ * @property integer $kod_p
  * @property integer $quantity
- * @property integer $price
+ * @property integer $date
  */
-class Resource extends CActiveRecord
+class Order extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'resource';
+		return 'order';
 	}
 
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-        
-        // Встановлюємо первинний ключ
-        public function primaryKey()
-	{
-		return 'kod_r';
-		
-	}
-        
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('kod_r, name, quantity, price', 'required'),
-			array('kod_r, quantity, created, price', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('kod_p, quantity', 'required'),
+			array('kod_p, quantity, date', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, kod_r, name, quantity, created, price', 'safe', 'on'=>'search'),
+			array('id, kod_p, quantity, date', 'safe', 'on'=>'search'),
 		);
 	}
 
 	/**
-	 * Сворюємо зв'язок між таблицями resource і product за допомогою пов'язуючої таблиці relations
+	 * @return array relational rules.
 	 */
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'relation' => array(self::HAS_MANY, 'Relation', 'kod_r'),
-			'product' => array(self::HAS_MANY, 'Product', 'kod_r', 'through'=>'relation'),
+                    'product'=> array(self::BELONGS_TO, 'Product', 'kod_p')
 		);
 	}
+      
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -65,23 +55,22 @@ class Resource extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'kod_r' => 'Код ресурсу',
-			'name' => 'Назва',
+			'kod_p' => 'Продукція',
 			'quantity' => 'Кількість',
-			'price' => 'Ціна',
-                        'created'=> 'Дата додавання',
+			'date' => 'Дата замовлення',
 		);
 	}
+        
         public function beforeSave() {
             
             
             if ($this->isNewRecord){
-                $this->created = time();
+                $this->date = time();
             }
             return parent::beforeSave();
         }
 
-        /**
+	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
 	 * Typical usecase:
@@ -100,21 +89,42 @@ class Resource extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('kod_r',$this->kod_r);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('kod_p',$this->kod_p);
 		$criteria->compare('quantity',$this->quantity);
-		$criteria->compare('price',$this->price);
+		$criteria->compare('date',$this->date);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+        
+        //Метод повертає всю продукцію яку можливо виготовити
+        public static function all_product(){
+           $product = CHtml::listData(Product::model()->findAll(), 'kod_p', 'name');
+           return $product;
+        }
+        
+        //повертаэмо ціну за одиницю такої продукції
+        public static function costs($kod_p){
+            $money; //сума ресурсів
+            $resource = Relation::model()->findAllByAttributes(array(
+                'kod_p'=>$kod_p,
+            ));
+            
+            foreach ($resource as $one){
+                $money += $one->resource->price*$one->quantity;
+            }
+         
+            
+            return $money;
+            
+        }
 
-	/**
+        /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Resource the static model class
+	 * @return Order the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

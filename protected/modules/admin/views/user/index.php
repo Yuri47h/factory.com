@@ -32,18 +32,36 @@ $('.search-form form').submit(function(){
 	'model'=>$model,
 )); ?>
 </div><!-- search-form -->
+<?php 
+    echo CHtml::form();
+    echo CHtml::submitButton('Підтвердити',array('name'=>'checked'));
+    echo CHtml::submitButton('Заблокувати',array('name'=>'block'));
+?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'user-grid',
+        'selectableRows'=>2,
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+                array(
+                    'class'=>'CCheckBoxColumn',
+                    'id'=>'User_id'
+                    ),
+                'id',
 		'username',
 		'password',
 		'role',
+                'checked'=>array(
+                    'name'=>'checked',
+                    'value'=>'($data->checked == 0)? "Ні":"Так"',
+                    'filter' => array(0=>'Ні', 1=>'Так'),
+                ),
+            
 		array(
 			'class'=>'CButtonColumn',
 		),
 	),
 )); ?>
+
+<?php echo CHtml::endForm();?>

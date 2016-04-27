@@ -33,7 +33,11 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'role'); ?>
-		<?php echo $form->dropDownList($model,'role', array('manyfactory'=>'Менеджер цеху', 'storage'=>'Менеджер складу')); ?>
+		<?php echo $form->dropDownList($model,'role', array(
+                    'manufactory'=>'Менеджер цеху',
+                    'storage'=>'Менеджер складу',
+                    'admin'=>'Адміністратор'
+                    )); ?>
 		<?php echo $form->error($model,'role'); ?>
 	</div>
 

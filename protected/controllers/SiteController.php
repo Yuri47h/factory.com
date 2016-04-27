@@ -29,7 +29,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+                    $this->render('index');
 	}
 
 	/**
@@ -106,4 +106,23 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+        // створюємо метод для реєстрації користувачів системи
+        public function actionRegistration()
+	{
+            $model= new User;
+            $model->scenario='registration';
+            
+            if (isset($_POST['User'])){
+                $model->attributes = $_POST['User'];
+                if($model->save()){
+                    Yii::app()->user->setFlash('registration','Ви успішно зареєстровані. Чекайте на підтвердження вашого профілю адміністратором');
+                }
+                
+            }
+            
+            $this->render('registration', array(
+                'model'=>$model,
+            ));
+	}
+        
 }

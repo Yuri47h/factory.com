@@ -11,6 +11,11 @@
  */
 class User extends CActiveRecord
 {
+    const ROLE_ADMIN = 'admin';
+    const ROLE_MANUFACTORY = 'manufactory';
+    const ROLE_STORAGE = 'storage';
+    const ROLE_BANNED = 'banned';
+    public $verifyCode;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -32,8 +37,14 @@ class User extends CActiveRecord
 			array('username, role, password', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, username, password, role', 'safe', 'on'=>'search'),
+			array('id, username, password, role, checked', 'safe', 'on'=>'search'),
+                        array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on'=>'registration'),
 		);
+	}
+         public function primaryKey()
+	{
+		return 'id';
+		
 	}
 
 	/**
@@ -57,6 +68,8 @@ class User extends CActiveRecord
 			'username' => "Ім'я",
 			'password' => 'Пароль',
 			'role' => 'Роль',
+                        'checked'=>'Підтверджений',
+                        'verifyCode'=>'Код с зображення'
 		);
 	}
 
@@ -82,11 +95,20 @@ class User extends CActiveRecord
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('role',$this->role);
+                $criteria->compare('checked',$this->checked);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+        
+        //перед записом в БД поствимо відмітку, що користувач не перевірений
+        public function beforeSave(){
+            if($this->isNewRecord){
+                $this->checked=0;
+            }
+            return parent::beforeSave();
+        }
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -98,4 +120,43 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        //Створюємо своє меню
+        public static function menu($position){
+            
+            $menu_arr = array(); 
+             if ($position=="right"){
+                 
+                //Виводимо для кодного користувача своє меню
+                if (Yii::app()->user->checkAccess('storage')){
+                    $menu_arr[] = array('label'=>'Журнал замовлень', 'url'=>array('//storage/done/order'));   
+                    $menu_arr[] = array('label'=>'Журнал ресурсів', 'url'=>array('//storage/resource/index'));
+                    $menu_arr[] = array('label'=>'Додати ресурс', 'url'=>array('//storage/resource/create'));                       
+                                        
+                }
+                
+           
+                if(Yii::app()->user->checkAccess('manufactory')){
+                    $menu_arr[] = array('label'=>'Журнал продукцї', 'url'=>array('//manufactory/product/index'));
+                    $menu_arr[] = array('label'=>'Створити продукт', 'url'=>array('//manufactory/product/create'));
+                    $menu_arr[] = array('label'=>'Журнал замовлень', 'url'=>array('/order/index'));
+                    $menu_arr[] = array('label'=>'Зробити замовлення', 'url'=>array('/order/create'));
+                    $menu_arr[] = array('label'=>'Редагування замовлень', 'url'=>array('/order/admin'));
+                }
+                
+            
+            }
+            return $menu_arr; 
+        }
+        //для адміна додаємо додаткове меню
+        public static function menu_admin($position){
+            
+            $menu_arr = array();        
+             if ($position=="right"){           
+                     $menu_arr[] = array('label'=>'Журнал користувачів', 'url'=>array('//admin/user'));  
+                    $menu_arr[] = array('label'=>'Створити користувача', 'url'=>array('//admin/user/create')); 
+             }
+         
+            return $menu_arr; 
+        }
 }

@@ -1,60 +1,49 @@
 <?php
 
 /**
- * This is the model class for table "resource".
+ * This is the model class for table "done".
  *
- * The followings are the available columns in table 'resource':
+ * The followings are the available columns in table 'done':
  * @property integer $id
- * @property integer $kod_r
- * @property string $name
+ * @property integer $kod_p
  * @property integer $quantity
- * @property integer $price
+ * @property integer $costs
+ * @property integer $date
  */
-class Resource extends CActiveRecord
+class Done extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'resource';
+		return 'done';
 	}
 
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-        
-        // Встановлюємо первинний ключ
-        public function primaryKey()
-	{
-		return 'kod_r';
-		
-	}
-        
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('kod_r, name, quantity, price', 'required'),
-			array('kod_r, quantity, created, price', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('kod_p, quantity, costs, date', 'required'),
+			array('kod_p, quantity, costs, date', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, kod_r, name, quantity, created, price', 'safe', 'on'=>'search'),
+			array('id, kod_p, quantity, costs, date', 'safe', 'on'=>'search'),
 		);
 	}
 
 	/**
-	 * Сворюємо зв'язок між таблицями resource і product за допомогою пов'язуючої таблиці relations
+	 * @return array relational rules.
 	 */
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'relation' => array(self::HAS_MANY, 'Relation', 'kod_r'),
-			'product' => array(self::HAS_MANY, 'Product', 'kod_r', 'through'=>'relation'),
 		);
 	}
 
@@ -65,23 +54,14 @@ class Resource extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'kod_r' => 'Код ресурсу',
-			'name' => 'Назва',
-			'quantity' => 'Кількість',
-			'price' => 'Ціна',
-                        'created'=> 'Дата додавання',
+			'kod_p' => 'Kod P',
+			'quantity' => 'Quantity',
+			'costs' => 'Costs',
+			'date' => 'Date',
 		);
 	}
-        public function beforeSave() {
-            
-            
-            if ($this->isNewRecord){
-                $this->created = time();
-            }
-            return parent::beforeSave();
-        }
 
-        /**
+	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
 	 * Typical usecase:
@@ -100,24 +80,42 @@ class Resource extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('kod_r',$this->kod_r);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('kod_p',$this->kod_p);
 		$criteria->compare('quantity',$this->quantity);
-		$criteria->compare('price',$this->price);
+		$criteria->compare('costs',$this->costs);
+		$criteria->compare('date',$this->date);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+        
 
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Resource the static model class
+	 * @return Done the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
+        
+        
+        //Створює кнопку при натисканні на яку замовлення виконужться, вноситься запис до БД Done
+        public static function actionCompleted($data){
+            
+            
+            if ($_POST["$data->kod_p"]){
+                $model=new Done;
+                $model->kod_p = $data->kod_p;
+                $model->quantity = $data->quantity;
+                $model->costs = Order::costs($data->kod_p)*$data->quantity;
+                $model->date = time();
+                if($model->save())
+                    print_r($_POST);
+            }
+            else  return CHtml::submitButton('Замовлення виконане',array('name'=>"$data->kod_p"));
+        }
 }

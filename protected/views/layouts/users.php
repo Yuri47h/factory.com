@@ -32,11 +32,13 @@
 				array('label'=>'Головна', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Контакти', 'url'=>array('/site/contact')),                           
-				array('label'=>'Ресурси', 'url'=>array('/storage/resource/index')),                             
-				array('label'=>'Продукція що виробляється', 'url'=>array('/manufactory/product/index')),                             
-				array('label'=>'Користувачі', 'url'=>array('/admin/user')),                             
+				array('label'=>'Ресурси', 'url'=>array('/storage/resource/index'), 'visible'=>Yii::app()->user->checkAccess('storage')),                             
+				array('label'=>'Замовлення', 'url'=>array('/storage/done/index'), 'visible'=>Yii::app()->user->checkAccess('storage')),                             
+				array('label'=>'Продукція що виробляється', 'url'=>array('/manufactory/product/index'),  'visible'=>Yii::app()->user->checkAccess('manufactory')),                             
+				array('label'=>'Користувачі', 'url'=>array('/admin/user'), 'visible'=>Yii::app()->user->checkAccess('admin')),                             
 				array('label'=>'Ввійти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Вийти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Вийти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                                
 			),
 		)); ?>
 	</div><!-- mainmenu -->

@@ -44,7 +44,7 @@
                 $model->kod_r=$one->kod_r;
                 
                 echo $form->labelEx($model,'kod_r');
-                $resource = CHtml::listData($allResource, 'kod_r','name');
+                $resource = CHtml::listData(Resource::model()->findAll(), 'kod_r','name');
                 echo CHtml::dropDownList("resources[$i][kod_r]",$model->kod_r, $resource);
                         
                 echo $form->labelEx($model,'quantity');
@@ -58,10 +58,10 @@
                
             } else { 
                 $i = 0;
-                foreach ($allResource as $one){
+                foreach (Resource::model()->findAll() as $one){
                 echo '<div class="row_resource">';
                 
-                $resource = CHtml::listData($allResource, 'kod_r','name');
+                $resource = CHtml::listData(Resource::model()->findAll(), 'kod_r','name');
                 
                 echo $form->labelEx($model,'kod_r');
                 echo $form->dropDownList($model,'kod_r',$resource, array('empty'=>'--Виберіть ресус--','name'=>'kod_r'.$i ));
@@ -78,7 +78,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
