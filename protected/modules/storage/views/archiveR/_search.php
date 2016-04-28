@@ -1,6 +1,6 @@
 <?php
-/* @var $this ResourceController */
-/* @var $model Resource */
+/* @var $this ArchiveRController */
+/* @var $model ArchiveR */
 /* @var $form CActiveForm */
 ?>
 
@@ -22,17 +22,22 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->label($model,'quantity'); ?>
+		<?php echo $form->textField($model,'quantity'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
+		<?php echo $form->label($model,'total'); ?>
+		<?php echo $form->textField($model,'total'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'date'); ?>
+		<?php echo $form->textField($model,'date'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Пошук'); ?>
+		<?php echo CHtml::submitButton('Search'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

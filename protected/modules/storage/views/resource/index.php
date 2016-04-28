@@ -44,7 +44,6 @@ $('.search-form form').submit(function(){
 		
 		'kod_r',
 		'name',
-		'quantity',
 		'price',
 		'created' => array(
                     'name'=>'created',

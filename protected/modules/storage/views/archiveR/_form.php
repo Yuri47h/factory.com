@@ -1,13 +1,13 @@
 <?php
-/* @var $this ResourceController */
-/* @var $model Resource */
+/* @var $this ArchiveRController */
+/* @var $model ArchiveR */
 /* @var $form CActiveForm */
 ?>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'resource-form',
+	'id'=>'archive-r-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Поля з <span class="required">*</span> є обов'язковими.</p>
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -26,25 +26,22 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'name'); ?>
+		<?php echo $form->labelEx($model,'quantity'); ?>
+		<?php echo $form->textField($model,'quantity'); ?>
+		<?php echo $form->error($model,'quantity'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price'); ?>
-		<?php echo $form->error($model,'price'); ?>
+		<?php echo $form->labelEx($model,'total'); ?>
+		<?php echo $form->textField($model,'total'); ?>
+		<?php echo $form->error($model,'total'); ?>
 	</div>
-        
-        <?php if (isset($archive)){?>
-        <div class="row">
-		<?php echo $form->label($archive,'quantity'); ?>
-		<?php echo $form->textField($archive,'quantity'); ?>
-		<?php echo $form->error($archive,'price'); ?>
-	</div>
-        <?php } ?>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'date'); ?>
+		<?php echo $form->textField($model,'date'); ?>
+		<?php echo $form->error($model,'date'); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
