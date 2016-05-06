@@ -14,23 +14,37 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css">
+        
+        <!-- Bootstrap core CSS -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Material Design Bootstrap -->
+        <link href="/css/mdb.css" rel="stylesheet">
+
+        <!-- Template style -->
+        <link href="/css/style.css" rel="stylesheet">
+        
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body>
+<?php //Присвоюємо id ?>
+<body id="<?php echo Yii::app()->controller->action->id ?>" >
 
-<div class="container" id="page">
-
-	<div id="header">
+<div  id="page">
+    <div class="navbar z-depth-2 info-color">
+	<div id="header" >
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
-	<div id="mainmenu">
+	<div id="container ">
 		<?php $this->widget('zii.widgets.CMenu',array(
+                     'htmlOptions' => array(
+                    'class'=>'nav navbar-nav',
+                        ),
 			'items'=>array(
 				array('label'=>'Головна', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
+				array('label'=>'Додаткова сторінка', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Контакти', 'url'=>array('/site/contact')),
                                 array('label'=>'Адмінка', 'url'=>array('/admin'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Ввійти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
@@ -39,6 +53,8 @@
 			),
 		)); ?>
 	</div><!-- mainmenu -->
+	</div><!-- mainmenu -->
+	
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -50,9 +66,8 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		&copy; <?php echo date('Y'); ?> by Yuri Hayduchyk.<br/>
+		Всі права захищені.<br/>
 	</div><!-- footer -->
 
 </div><!-- page -->

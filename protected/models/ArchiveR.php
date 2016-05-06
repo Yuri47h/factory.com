@@ -44,6 +44,7 @@ class ArchiveR extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'resource'=>array(self::BELONGS_TO, 'Resource','kod_r')
 		);
 	}
 
@@ -87,6 +88,9 @@ class ArchiveR extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination'=>array(
+                            'pageSize'=>100,
+                        ),
 		));
 	}
         
@@ -98,8 +102,9 @@ class ArchiveR extends CActiveRecord
             }
             return parent::beforeSave();
         }
+        
 
-	/**
+        /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.

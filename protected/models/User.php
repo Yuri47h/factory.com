@@ -122,30 +122,70 @@ class User extends CActiveRecord
 	}
         
         //Створюємо своє меню
-        public static function menu($position){
+        public static function menu($position, $type){
             
             $menu_arr = array(); 
              if ($position=="right"){
+                 if($type=='order'){
+                //Виводимо для кожного користувача своє меню
+                    if (Yii::app()->user->checkAccess('storage')){
+                        $menu_arr[] = array('label'=>'Журнал активних замовлень ('.count(Order::model()->findAll()).')', 'url'=>array('//storage/done/order'));
+                                             
+                    }
+                  
+                    if (Yii::app()->user->checkAccess('manufactory')){
+                        $menu_arr[] = array('label'=>'Зробити замовлення для виготовлення продукції', 'url'=>array('/order/create'));
+                        $menu_arr[] = array('label'=>'Журнал активних замовлень', 'url'=>array('/order/index'));
+                    }
+                    
+                    $menu_arr[] = array('label'=>'Стан виробництва продукції', 'url'=>array('/archiveproduct/admin'));
+                 }
+                    
                  
-                //Виводимо для кодного користувача своє меню
-                if (Yii::app()->user->checkAccess('storage')){
-                    $menu_arr[] = array('label'=>'Журнал замовлень', 'url'=>array('//storage/done/order'));   
-                    $menu_arr[] = array('label'=>'Журнал ресурсів', 'url'=>array('//storage/resource/index'));
-                    $menu_arr[] = array('label'=>'Додати ресурс', 'url'=>array('//storage/resource/create'));                       
-                                        
+                 if($type=='resource'){
+                //Виводимо для кожного користувача своє меню
+                    if (Yii::app()->user->checkAccess('storage')){
+                          
+                        $menu_arr[] = array('label'=>'Склад матеріалів', 'url'=>array('//storage/resource/index'));
+                        $menu_arr[] = array('label'=>'Додати новий матеріал', 'url'=>array('//storage/resource/create')); 
+                        $menu_arr[] = array('label'=>'Нова поставка існуючого матеріалу', 'url'=>array('//storage/archiver/create'));                       
+                        
+                        
+	
+                        
+                         
+                    }
+                 }
+                
+                
+                if($type=='product'){
+                if(Yii::app()->user->checkAccess('manufactory')){
+                    $menu_arr[] = array('label'=>'Номенклатура продукцї', 'url'=>array('//manufactory/product/index'));
+                    $menu_arr[] = array('label'=>'Створити новий продукт', 'url'=>array('//manufactory/product/create'));
+                    
+                    
+                
                 }
                 
-           
-                if(Yii::app()->user->checkAccess('manufactory')){
-                    $menu_arr[] = array('label'=>'Журнал продукцї', 'url'=>array('//manufactory/product/index'));
-                    $menu_arr[] = array('label'=>'Створити продукт', 'url'=>array('//manufactory/product/create'));
-                    $menu_arr[] = array('label'=>'Журнал замовлень', 'url'=>array('/order/index'));
-                    $menu_arr[] = array('label'=>'Зробити замовлення', 'url'=>array('/order/create'));
-                    $menu_arr[] = array('label'=>'Редагування замовлень', 'url'=>array('/order/admin'));
                 }
+                
                 
             
             }
+            return $menu_arr; 
+        }
+        //меню архів
+        public static function menu_archive($position){
+            
+                $menu_arr = array();
+            if ($position == "right") {
+                $menu_arr[] = array('label' => 'Облік надходження матеріалів', 'url' => array('//storage/archiveR/admin'));
+                $menu_arr[] = array('label' => 'Використані матеріали', 'url' => array('//storage/done/admin'));
+                $menu_arr[] = array('label' => 'Створена продукція', 'url' => array('//archiveproduct/made'));
+                $menu_arr[] = array('label' => 'Виконані замовлення ресурс + продукт', 'url' => array('//storage/done/index'));
+                
+            }
+
             return $menu_arr; 
         }
         //для адміна додаємо додаткове меню

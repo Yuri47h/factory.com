@@ -1,15 +1,10 @@
 <?php
-/* @var $this OrderController */
-/* @var $model Order */
+/* @var $this ArchiveproductController */
+/* @var $model Archiveproduct */
 
 $this->breadcrumbs=array(
-	'Orders'=>array('index'),
+	'Archiveproducts'=>array('index'),
 	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List Order', 'url'=>array('index')),
-	array('label'=>'Create Order', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +13,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#order-grid').yiiGridView('update', {
+	$('#archiveproduct-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +21,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Orders</h1>
+<h1>Manage Archiveproducts</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,21 +36,23 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'order-grid',
+	'id'=>'archiveproduct-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'kod_p',
+                'kod_p'=>array(
+                    'name'=>'kod_p',
+                    'value'=>'$data->product->name',
+                ),
 		'quantity',
-		'date' => array(
-                    'name'=>'date',
-                    'value'=>'date("j.m.Y. H:i", $data->date)',
-                    'filter'=>FALSE,
-                    'headerHtmlOptions' => array('width' => '100')
-                    ),
-		array(
-			'class'=>'CButtonColumn',
-		),
+		'cost',
+		'status',
+                'date' => array(
+                    'name' => 'date',
+                    'value' => 'date("j.m.Y H:i", $data->date)',
+                    'filter' => FALSE,
+                    'headerHtmlOptions' => array('width' => '100'),
+                ),
 	),
 )); ?>

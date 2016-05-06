@@ -7,7 +7,7 @@
  * @property integer $id
  * @property integer $kod_p
  * @property integer $quantity
- * @property integer $costs
+ * @property integer $cost
  * @property integer $date
  */
 class Done extends CActiveRecord
@@ -28,11 +28,11 @@ class Done extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('kod_p, quantity, costs, date', 'required'),
-			array('kod_p, quantity, costs, date', 'numerical', 'integerOnly'=>true),
+			array('kod_r, order_id, quantity, cost, date', 'required'),
+			array('kod_r, quantity, order_id, cost, date', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, kod_p, quantity, costs, date', 'safe', 'on'=>'search'),
+			array('id, kod_r, quantity, order_id, cost, date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,7 +44,15 @@ class Done extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+                    'resource'=>array(self::BELONGS_TO, 'Resource','kod_r'),
+                    'archiveproduct'=>array(self::HAS_MANY, 'Archiveproduct','id'),
+                    'product'=> array(self::HAS_MANY, 'Product','kod_p', 'through' =>'archiveproduct'),
 		);
+	}
+         public function primaryKey()
+	{
+		return 'order_id';
+		
 	}
 
 	/**
@@ -54,10 +62,11 @@ class Done extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'kod_p' => 'Kod P',
-			'quantity' => 'Quantity',
-			'costs' => 'Costs',
-			'date' => 'Date',
+			'order_id' => 'Індентифікаор замовлення',
+			'kod_r' => 'Ресурс',
+			'quantity' => 'Кількість',
+			'cost' => 'Вартість',
+			'date' => 'Дата виконання замовлення',
 		);
 	}
 
@@ -80,13 +89,17 @@ class Done extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('kod_p',$this->kod_p);
+		$criteria->compare('order_id',$this->order_id);
+		$criteria->compare('kod_r',$this->kod_r);
 		$criteria->compare('quantity',$this->quantity);
-		$criteria->compare('costs',$this->costs);
+		$criteria->compare('cost',$this->cost);
 		$criteria->compare('date',$this->date);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination'=>array(
+                            'pageSize'=>100,
+                        ),
 		));
 	}
         
@@ -103,19 +116,58 @@ class Done extends CActiveRecord
 	}
         
         
-        //Створює кнопку при натисканні на яку замовлення виконужться, вноситься запис до БД Done
+        //Створює кнопку при натисканні на яку замовлення виконужться, вноситься запис до БД Done, та вираховується кількість
         public static function actionCompleted($data){
+            // повертаємо всі ресуси
             
-            
-            if ($_POST["$data->kod_p"]){
-                $model=new Done;
-                $model->kod_p = $data->kod_p;
-                $model->quantity = $data->quantity;
-                $model->costs = Order::costs($data->kod_p)*$data->quantity;
-                $model->date = time();
-                if($model->save())
-                    print_r($_POST);
+        //приймаємо id замовлення
+            if ($_POST["$data->id"]){
+               
+                if (!Order::possibility($data->kod_r, $data->quantity)) {
+                    
+                   echo "Замовлення не може бути виконане, тому що не вистачає ресурсів.";
+                } 
+                else {
+                    $model = new Done;
+                    $model->kod_r = $data->kod_r;
+                    $model->quantity = $data->quantity;
+                    $model->cost = $data->cost;
+                    $model->order_id = $data->order_id;
+                    $model->date = time();
+                    if ($model->save()) {
+                        echo "Замовлення успішно виконане!";
+                    }
+                }  
             }
-            else  return CHtml::submitButton('Замовлення виконане',array('name'=>"$data->kod_p"));
+            else  return CHtml::submitButton('Виконати замовлення',array('name'=>"$data->id"));
+        }
+        
+      
+        public function afterSave() {
+             // Видаляэмо цей запис з активних замовлень
+            $criteria = new CDbCriteria();
+                $criteria->condition = "order_id =".$this->order_id;
+                $criteria->addCondition("kod_r =".$this->kod_r);
+            Order::model()->deleteAll($criteria);
+            
+            $resource = Resource::model()->findByPk($this->kod_r);
+            $resource->quantity -= $this->quantity;
+            $resource->update(array('quantity'));
+           
+            
+            
+           
+            if (!Order::model()->findAllByAttributes(array('order_id'=>  $this->order_id))){
+                
+                $archive = Archiveproduct::model()->findByPk($this->order_id);
+                $archive->status = 'yes';
+                $archive->date = time();
+                $archive->update(array('status', 'date'));                
+            }
+                    
+            
+            
+            
+            return parent::afterSave();
         }
 }

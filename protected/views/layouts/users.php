@@ -30,11 +30,9 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Головна', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Контакти', 'url'=>array('/site/contact')),                           
-				array('label'=>'Ресурси', 'url'=>array('/storage/resource/index'), 'visible'=>Yii::app()->user->checkAccess('storage')),                             
-				array('label'=>'Замовлення', 'url'=>array('/storage/done/index'), 'visible'=>Yii::app()->user->checkAccess('storage')),                             
-				array('label'=>'Продукція що виробляється', 'url'=>array('/manufactory/product/index'),  'visible'=>Yii::app()->user->checkAccess('manufactory')),                             
+				array('label'=>'Додаткова сторінка', 'url'=>array('/site/page', 'view'=>'about')),
+				array('label'=>'Контакти', 'url'=>array('/site/contact')),     
+                                array('label'=>'Адмінка', 'url'=>array('/admin'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Користувачі', 'url'=>array('/admin/user'), 'visible'=>Yii::app()->user->checkAccess('admin')),                             
 				array('label'=>'Ввійти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Вийти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
@@ -53,9 +51,8 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		&copy; <?php echo date('Y'); ?> by Yuri Hayduchyk.<br/>
+		Всі права захищені.<br/>
 	</div><!-- footer -->
 
 </div><!-- page -->

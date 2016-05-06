@@ -130,7 +130,7 @@ class Product extends CActiveRecord
                     else return $x;
                 }
                 $number = NumberArr($_POST, $x);
-                //проходимо циклом по існуючим значенням всім значенням кількості та коду ресурсу і додаємо це в таблицю relation
+                //проходимо циклом по існуючим значенням та коду ресурсу і додаємо це в таблицю relation
                 for($i = 0; $i<$number; $i++){
                     
                     $relation = new Relation();
@@ -156,6 +156,28 @@ class Product extends CActiveRecord
                            ), $criteria);
                 }
             }
+        }
+        
+        //повертаэмо ціну за одиницю шуканої продукції
+        public static function costProduct($kod_p){
+            $money; //сума ресурсів
+            $resource = Relation::model()->findAllByAttributes(array(
+                'kod_p'=>$kod_p,
+            ));
+            
+            foreach ($resource as $one){
+                $money += $one->resource->price*$one->quantity;
+            }
+         
+            
+            return $money;
+            
+        }
+        
+         //Метод повертає всю продукцію яку можливо виготовити
+        public static function allProduct(){
+           $product = CHtml::listData(Product::model()->findAll(), 'kod_p', 'name');
+           return $product;
         }
 
        /**

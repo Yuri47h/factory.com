@@ -19,13 +19,45 @@
 		$this->endWidget();
             }
                 $this->beginWidget('zii.widgets.CPortlet', array(
-			'title'=>'Операції з виробництвом',
+			'title'=>'Виробництво',
 		));
 		$this->widget('zii.widgets.CMenu', array(
-			'items'=>  User::menu('right'),
+			'items'=>  User::menu('right', 'order'),
 			'htmlOptions'=>array('class'=>'operations'),
 		));
 		$this->endWidget();
+                
+                
+                
+                $this->beginWidget('zii.widgets.CPortlet', array(
+			'title'=>'Операції з матеріалами',
+		));
+		$this->widget('zii.widgets.CMenu', array(
+			'items'=>  User::menu('right','resource'),
+			'htmlOptions'=>array('class'=>'operations'),
+		));
+		$this->endWidget();
+                
+                
+                
+                $this->beginWidget('zii.widgets.CPortlet', array(
+			'title'=>'Операції з продукцією',
+		));
+		$this->widget('zii.widgets.CMenu', array(
+			'items'=>  User::menu('right', 'product'),
+			'htmlOptions'=>array('class'=>'operations'),
+		));
+		$this->endWidget();
+            
+		$this->beginWidget('zii.widgets.CPortlet', array(
+			'title'=>'Архів',
+		));
+		$this->widget('zii.widgets.CMenu', array(
+			'items'=>  User::menu_archive('right'),
+			'htmlOptions'=>array('class'=>'operations'),
+		));
+		$this->endWidget();
+            
 	?>
 	</div><!-- sidebar -->
 </div>

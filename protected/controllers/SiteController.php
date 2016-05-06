@@ -119,9 +119,10 @@ class SiteController extends Controller
                 }
                 
             }
-            
+            $xxx=111;
             $this->render('registration', array(
                 'model'=>$model,
+                'xxx'=>$xxx,
             ));
 	}
         

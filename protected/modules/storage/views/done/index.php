@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Dones',
+	'Виконані замовлення',
 );
 
 $this->menu=array(
@@ -12,9 +12,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>Dones</h1>
+<h1>Виконані замовлення</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php $this->widget('zii.widgets.DoneCListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>

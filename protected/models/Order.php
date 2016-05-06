@@ -27,11 +27,11 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('kod_p, quantity', 'required'),
-			array('kod_p, quantity, date', 'numerical', 'integerOnly'=>true),
+			array('kod_r, kod_p, quantity, cost, order_id', 'required'),
+			array('kod_r, kod_p, quantity, date, order_id, cost', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, kod_p, quantity, date', 'safe', 'on'=>'search'),
+			array('id, kod_r, order_id, kod_p, quantity, date, cost', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,7 +43,9 @@ class Order extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-                    'product'=> array(self::BELONGS_TO, 'Product', 'kod_p')
+                    'resource'=> array(self::BELONGS_TO, 'Resource', 'kod_r'),
+                    'product'=> array(self::BELONGS_TO, 'Product', 'kod_p'),
+                    'archiveproduct'=> array(self::BELONGS_TO, 'archiveproduct', 'order_id'),
 		);
 	}
       
@@ -55,9 +57,12 @@ class Order extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'kod_p' => 'Продукція',
+			'kod_r' => 'Ресурс',
+			'kod_p' => 'Продукт',
 			'quantity' => 'Кількість',
 			'date' => 'Дата замовлення',
+			'cost' => 'Вартість ресурсів',
+			'order_id' => 'Ідентифікатор замовлення',
 		);
 	}
         
@@ -89,6 +94,9 @@ class Order extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('order_id',$this->order_id);
+		$criteria->compare('kod_r',$this->kod_r);
+		$criteria->compare('cost',$this->cost);
 		$criteria->compare('kod_p',$this->kod_p);
 		$criteria->compare('quantity',$this->quantity);
 		$criteria->compare('date',$this->date);
@@ -98,27 +106,30 @@ class Order extends CActiveRecord
 		));
 	}
         
-        //Метод повертає всю продукцію яку можливо виготовити
-        public static function all_product(){
-           $product = CHtml::listData(Product::model()->findAll(), 'kod_p', 'name');
-           return $product;
+        //перевірка чи можливо виконати замовлення
+        public static function possibility($kod_r, $quantity){
+            $resource = Resource::model()->findByPk(array('kod_r'=>$kod_r));
+                 if ($quantity > $resource->quantity) {
+                    return FALSE;
+                }
+                else return TRUE;
+                
         }
+        //кнопка відміни
+        public static function Cancelorder($data){
+           
+         return CHtml::submitButton('Відмінити замовлення',array('name'=>"$data->order_id", 'value'=>"Відмінити замовлення"));
+            
+        }
+
         
-        //повертаэмо ціну за одиницю такої продукції
-        public static function costs($kod_p){
-            $money; //сума ресурсів
-            $resource = Relation::model()->findAllByAttributes(array(
-                'kod_p'=>$kod_p,
-            ));
-            
-            foreach ($resource as $one){
-                $money += $one->resource->price*$one->quantity;
-            }
-         
-            
-            return $money;
-            
-        }
+
+
+
+
+
+
+
 
         /**
 	 * Returns the static model of the specified AR class.

@@ -6,10 +6,13 @@ body
 	font: normal 10pt Arial,Helvetica,sans-serif;
 	background: #EFEFEF;
 }
-
+#registration{
+    background: url(/images/background/night.jpg) no-repeat;
+    
+}
 #page
 {
-	margin-top: 5px;
+
 	margin-bottom: 5px;
 	background: white;
 	border: 1px solid #C9E0ED;
@@ -19,7 +22,6 @@ body
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
 }
 
 #content
@@ -43,6 +45,7 @@ body
 
 #logo
 {
+    float: right;
 	padding: 10px 20px;
 	font-size: 200%;
 }

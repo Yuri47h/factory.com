@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create ArchiveR</h1>
+<h1>Надходження існуючого ресурсу</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

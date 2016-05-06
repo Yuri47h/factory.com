@@ -10,7 +10,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('kod_r')); ?>:</b>
-	<?php echo CHtml::encode($data->kod_r); ?>
+	<?php echo CHtml::encode($data->resource->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('quantity')); ?>:</b>
@@ -22,7 +22,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date')); ?>:</b>
-	<?php echo CHtml::encode($data->date); ?>
+	<?php echo CHtml::encode(date("j.m.Y. H:i", $data->date)); ?>
 	<br />
 
 

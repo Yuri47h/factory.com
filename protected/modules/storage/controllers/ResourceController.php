@@ -58,16 +58,21 @@ class ResourceController extends Controller
                 $archive=new ArchiveR;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		//$this->performAjaxValidation($model);
 
 		if(isset($_POST['Resource']))
 		{
                     $model->attributes=$_POST['Resource'];
-                  
-			if($model->save()){                      
-                            if ($_POST['ArchiveR']['quantity']!=''){
+                    
+                    //перевірка чи існує ресурс с таким кодом, якщо так виводить флеш повідомлення
+                    if(Resource::model()->findByPk($_POST['Resource']['kod_r'])){
+                        Yii::app()->user->setFlash('resource_is','Ресурс с таким кодом вже є, будь ласка змініть код ресурсу');
+                    } 
+                    else if($model->save()){       
+                            // якщо задається кількість то записується в ArchiveR
+                            if ($_POST['Resource']['quantity']!=''){
                                 $archive->attributes=$_POST['Resource'];
-                                $archive->quantity=$_POST['ArchiveR']['quantity'];
+                                $archive->quantity=$_POST['Resource']['quantity'];
                                 $archive->total = $model->price*$archive->quantity;
                                
                                 if($archive->save()){
@@ -152,7 +157,7 @@ class ResourceController extends Controller
 	 * @return Resource the loaded model
 	 * @throws CHttpException
 	 */
-	public function loadModel($id)
+	public static function loadModel($id)
 	{
 		$model=Resource::model()->findByPk(array($id));
 		if($model===null)

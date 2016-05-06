@@ -37,11 +37,11 @@ class Resource extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('kod_r, name, price', 'required'),
-			array('kod_r, created, price', 'numerical', 'integerOnly'=>true),
+			array('kod_r, quantity, price', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, kod_r, name, created, price', 'safe', 'on'=>'search'),
+			array('id, kod_r, quantity, name, price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,17 +68,10 @@ class Resource extends CActiveRecord
 			'kod_r' => 'Код ресурсу',
 			'name' => 'Назва',
 			'price' => 'Ціна',
-                        'created'=> 'Дата додавання',
+                        'quantity'=> 'Кількість'
 		);
 	}
-        public function beforeSave() {
-            
-            
-            if ($this->isNewRecord){
-                $this->created = time();
-            }
-            return parent::beforeSave();
-        }
+       
 
         /**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -102,13 +95,31 @@ class Resource extends CActiveRecord
 		$criteria->compare('kod_r',$this->kod_r);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('price',$this->price);
+		$criteria->compare('quantity',$this->quantity);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination'=>array(
+                            'pageSize'=>100,
+                        ),
 		));
 	}
+        
+        // Повертає ціну на шуканий ресурс
+        public static function price ($kod_r){
+            $resource = Resource::model()->findByPk($kod_r);
+            return $resource->price;
+        }
+        
+         //Метод повертає всі ресурси та формує масив з них
+        public static function allResource(){
+           $resource = CHtml::listData(Resource::model()->findAll(), 'kod_r', 'name');
+           return $resource;
+        }
+        
+        
 
-	/**
+        /**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.

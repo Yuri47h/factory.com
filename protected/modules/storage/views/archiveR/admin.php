@@ -49,12 +49,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'kod_r',
 		'quantity',
 		'total',
-                'date' => array(
-                    'name'=>'date',
-                    'value'=>'date("j.m.Y. H:i", $data->date)',
-                    'filter'=>FALSE,
-                    'headerHtmlOptions' => array('width' => '100')
-                    ),
+		'date',
 		array(
 			'class'=>'CButtonColumn',
 		),

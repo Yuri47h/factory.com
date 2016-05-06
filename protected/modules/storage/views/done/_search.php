@@ -17,8 +17,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'kod_p'); ?>
-		<?php echo $form->textField($model,'kod_p'); ?>
+		<?php echo $form->label($model,'kod_r'); ?>
+		<?php echo $form->textField($model,'kod_r'); ?>
 	</div>
 
 	<div class="row">
@@ -27,8 +27,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'costs'); ?>
-		<?php echo $form->textField($model,'costs'); ?>
+		<?php echo $form->label($model,'cost'); ?>
+		<?php echo $form->textField($model,'cost'); ?>
 	</div>
 
 	<div class="row">

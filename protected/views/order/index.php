@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 
 <h1>Замовлення</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php $this->widget('zii.widgets.MyCListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>

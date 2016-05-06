@@ -39,9 +39,9 @@
         
         <?php if (isset($archive)){?>
         <div class="row">
-		<?php echo $form->label($archive,'quantity'); ?>
-		<?php echo $form->textField($archive,'quantity'); ?>
-		<?php echo $form->error($archive,'price'); ?>
+		<?php echo $form->label($model,'quantity'); ?>
+		<?php echo $form->textField($model,'quantity'); ?>
+		<?php echo $form->error($model,'quantity'); ?>
 	</div>
         <?php } ?>
 

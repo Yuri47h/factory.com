@@ -10,11 +10,13 @@ class UserIdentity extends CUserIdentity {
         $user = User::model()->find('LOWER(username)=?', array(strtolower($this->username)));
         
         //Перевіряємо чи підтверджений користувач
-        if($user->checked == 0)  die('Ваш профіль не підтверджено. Зверніться до адміністратора');
+        
+       
        /* if(($user===null) || (md5($this->password)!==$user->password))*/
         if(($user===null) || ($this->password!==$user->password)) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         } else {
+             if($user->checked == 0)  die('Ваш профіль не підтверджено. Зверніться до адміністратора');
             // В качестве идентификатора будем использовать id, а не username,
             // как это определено по умолчанию. Обязательно нужно переопределить
             // метод getId(см. ниже).

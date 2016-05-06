@@ -45,12 +45,8 @@ $('.search-form form').submit(function(){
 		'kod_r',
 		'name',
 		'price',
-		'created' => array(
-                    'name'=>'created',
-                    'value'=>'date("j.m.Y. H:i", $data->created)',
-                    'filter'=>FALSE,
-                    'headerHtmlOptions' => array('width' => '100')
-                    ),
+		'quantity',
+		
 		array(
 			'class'=>'CButtonColumn',
 		),

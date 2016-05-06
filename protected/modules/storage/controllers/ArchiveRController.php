@@ -6,7 +6,7 @@ class ArchiveRController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/mycolumn';
 
 	/**
 	 * @return array action filters
@@ -28,17 +28,14 @@ class ArchiveRController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'actions'=>array('index','view','create','update','admin', 'delete'),
+				'roles'=>array('storage'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+                    array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view','admin'),
+				'roles'=>array('manufactory'),
 			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
+			
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -70,9 +67,18 @@ class ArchiveRController extends Controller
 		if(isset($_POST['ArchiveR']))
 		{
 			$model->attributes=$_POST['ArchiveR'];
-			if($model->save())
+                        $model->total = $model->quantity*Resource::price($model->kod_r);
+			if($model->save()){
+                            //При ввезенні нового ресурсу збідьшуємо кількість на складі
+                            $resource = Resource::model()->findByPk($model->kod_r);
+                            $resource->quantity += $model->quantity;
+                            $resource->update('quantity');
+                            
+                            
+                        }
 				$this->redirect(array('view','id'=>$model->id));
 		}
+                
 
 		$this->render('create',array(
 			'model'=>$model,

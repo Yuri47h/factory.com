@@ -24,7 +24,6 @@ $this->menu=array(
 		'id',
 		'kod_r',
 		'name',
-		'quantity',
 		'price',
 	),
 )); ?>

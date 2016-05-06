@@ -21,7 +21,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'kod_r'); ?>
-		<?php echo $form->textField($model,'kod_r'); ?>
+		<?php echo $form->dropDownList($model,'kod_r', Resource::allResource(), array('empty'=>'Виберіть ресурс')); ?>
 		<?php echo $form->error($model,'kod_r'); ?>
 	</div>
 
@@ -31,20 +31,10 @@
 		<?php echo $form->error($model,'quantity'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'total'); ?>
-		<?php echo $form->textField($model,'total'); ?>
-		<?php echo $form->error($model,'total'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'date'); ?>
-		<?php echo $form->textField($model,'date'); ?>
-		<?php echo $form->error($model,'date'); ?>
-	</div>
+	
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Додати'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -20,8 +20,17 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'kod_p'); ?>
-		<?php echo $form->dropDownList($model,'kod_p',Order::all_product(),array('empty'=>'Виберіть продукт')); ?>
+		
+                <?php 
+                //Якщо зміна замовлення то унеможливлює зміну продукту, тільки зміна кількості
+                    if(isset($model->id)){
+                        echo $form->label($model,'kod_p');
+                        echo $form->dropDownList($model,'kod_p',  Product::allProduct(), array('disabled'=>"disabled"));
+                    }
+                    else {
+                        echo $form->label($model,'kod_p');
+                        echo $form->dropDownList($model,'kod_p',  Product::allProduct(), array('empty'=>'Виберіть продукт'));
+                    } ?>
 		<?php echo $form->error($model,'kod_p'); ?>
 	</div>
 

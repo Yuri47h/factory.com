@@ -1,6 +1,6 @@
 <?php
-/* @var $this OrderController */
-/* @var $model Order */
+/* @var $this ArchiveproductController */
+/* @var $model Archiveproduct */
 /* @var $form CActiveForm */
 ?>
 
@@ -15,15 +15,25 @@
 		<?php echo $form->label($model,'id'); ?>
 		<?php echo $form->textField($model,'id'); ?>
 	</div>
-
-	<div class="row">
+        
+        <div class="row">
 		<?php echo $form->label($model,'kod_p'); ?>
 		<?php echo $form->textField($model,'kod_p'); ?>
 	</div>
-
+    
 	<div class="row">
 		<?php echo $form->label($model,'quantity'); ?>
 		<?php echo $form->textField($model,'quantity'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'cost'); ?>
+		<?php echo $form->textField($model,'cost'); ?>
+	</div>
+    
+        <div class="row">
+		<?php echo $form->label($model,'status'); ?>
+		<?php echo $form->textField($model,'status'); ?>
 	</div>
 
 	<div class="row">
