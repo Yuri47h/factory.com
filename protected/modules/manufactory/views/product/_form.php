@@ -1,9 +1,4 @@
-<?php
 
-/* @var $this ProductController */
-/* @var $model Product */
-/* @var $form CActiveForm */
-?>
 
 <div class="form">
 
@@ -17,7 +12,7 @@
     
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Поля з <span class="required">*</span> є обов'язковими.</p>
 
 	<?php echo $form->errorSummary(array($model)); ?>
 

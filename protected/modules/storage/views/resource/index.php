@@ -1,16 +1,5 @@
 <?php
-/* @var $this ResourceController */
-/* @var $model Resource */
 
-$this->breadcrumbs=array(
-	'Resources'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-
-	array('label'=>'Додати ресурс', 'url'=>array('create')),
-);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -44,11 +33,19 @@ $('.search-form form').submit(function(){
 		
 		'kod_r',
 		'name',
-		'price',
-		'quantity',
+                'price'=>array(
+                    'name'=>'price',
+                    'value'=>'$data->price." грн"',
+                ),
+                'quantity'=>array(
+                    'name'=>'quantity',
+                    'value'=>'$data->quantity." шт."',
+                ),
 		
 		array(
 			'class'=>'CButtonColumn',
+                    'headerHtmlOptions' => array('width' => '100'),
+                    
 		),
 	),
 )); ?>

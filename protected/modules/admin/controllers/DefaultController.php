@@ -2,7 +2,6 @@
 
 class DefaultController extends Controller
 {
-    public $layout='//layouts/mycolumn'; //Підключаємо своє меню
     public function filters()
 	{
 		return array(

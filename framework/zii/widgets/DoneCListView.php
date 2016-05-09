@@ -19,30 +19,47 @@ public function renderItems()
 			{
                             //перевіряємо чи це перший елемент і виводимо початок блоку
                             if (!$order_id){
-                                echo '<div class="view_order" ';
-                                
+                                echo '<div class="view_order done_list"> ';
+                                echo '<div class="done_product" >';
                                 echo '<div class="order_id" > Номер замовлення: '.$item->order_id.'</div>';
-                               $product = Done::model()->with('product')->findByPk($item->order_id);                              
-                                foreach ($product->product as $one){
+                               $product = Done::model()->with('product')->findByPk($item->order_id);
+                               $product_quantity = Done::model()->with('archiveproduct')->findByPk($item->order_id);
+                               foreach ($product_quantity->archiveproduct as $one){
+                                   $quantity = $one->quantity;
+                               }
+                               foreach ($product->product as $one){
                                   $name_product = $one->name;
+                                
                                 }
                                 
-                                echo '<div class="title_order" > Продукт, що був виготовлений '.$name_product.'</div>';
+                                echo '<div class="title_order" > Продукт, що був виготовлений: '.$name_product.'</div>';
+                                echo '<div class="title_order" > Кількість: '.$quantity.'</div>';
+                                echo '</div>';
+                                
+                                
                             } else {
                                 $oreder_id_next = $item->order_id; //задаємо параметр для перевірки минулого номеру замовлення з теперішнім
                             }
                             //якщо не збігається розбиваємо на блоку та виводимо необхідну інформацію
                             if ($order_id != $oreder_id_next ){
                                 echo '</div>';
-                                echo '<div class="view_order" >';
+                                echo '<div class="view_order done_list" >';
+                                echo '<div class="done_product" >';
                                 echo '<div class="order_id" > Номер замовлення: '.$item->order_id.'</div>';
                                 
-                                $product = Done::model()->with('product')->findByPk($item->order_id);                              
+                                $product = Done::model()->with('product')->findByPk($item->order_id); 
                                 foreach ($product->product as $one){
                                   $name_product = $one->name;
                                 }
+                                $product_quantity = Done::model()->with('archiveproduct')->findByPk($item->order_id);
+                                foreach ($product_quantity->archiveproduct as $one){
+                                    $quantity = $one->quantity;
+                                }
+                                
                                 
                                 echo '<div class="title_order" > Продукт, що був виготовлений: '.$name_product.'</div>';
+                                echo '<div class="title_order" > Кількість: '.$quantity.'</div>';
+                                echo '</div>';
                             }
                                 
                                 $order_id=$item->order_id;
@@ -60,6 +77,7 @@ public function renderItems()
 		else
 			$this->renderEmptyText();
 		echo CHtml::closeTag($this->itemsTagName);
+                echo'</div>';
 	}
 }
 

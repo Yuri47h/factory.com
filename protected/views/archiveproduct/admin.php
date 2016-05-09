@@ -1,11 +1,5 @@
 <?php
-/* @var $this ArchiveproductController */
-/* @var $model Archiveproduct */
 
-$this->breadcrumbs=array(
-	'Archiveproducts'=>array('index'),
-	'Manage',
-);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -21,14 +15,10 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Archiveproducts</h1>
+<h1>Стан виробництва продукції</h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('Розширений пошук','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -40,19 +30,28 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
                 'kod_p'=>array(
                     'name'=>'kod_p',
                     'value'=>'$data->product->name',
                 ),
-		'quantity',
-		'cost',
-		'status',
+		'quantity'=>array(
+                    'name'=>'quantity',
+                    'value'=>'$data->quantity." шт."',
+                ),
+		'cost'=>array(
+                    'name'=>'cost',
+                    'value'=>'$data->cost." грн"',
+                ),
+		'status' => array(
+                    'name' => 'status',
+                    'value' =>'($data->status=="yes")?"Виготвлена":"В процесі виготволення"',
+                    'headerHtmlOptions' => array('width' => '200'),
+                    'filter' => array('yes'=>'Виготвлена', 'no'=>'В процесі виготволення'),),
                 'date' => array(
                     'name' => 'date',
                     'value' => 'date("j.m.Y H:i", $data->date)',
                     'filter' => FALSE,
-                    'headerHtmlOptions' => array('width' => '100'),
+                    'headerHtmlOptions' => array('width' => '200'),
                 ),
 	),
 )); ?>

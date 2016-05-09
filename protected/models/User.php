@@ -129,16 +129,16 @@ class User extends CActiveRecord
                  if($type=='order'){
                 //Виводимо для кожного користувача своє меню
                     if (Yii::app()->user->checkAccess('storage')){
-                        $menu_arr[] = array('label'=>'Журнал активних замовлень ('.count(Order::model()->findAll()).')', 'url'=>array('//storage/done/order'));
+                        $menu_arr[] = array('label'=>'Журнал активних замовлень ('.count(Order::model()->findAll()).')', 'url'=>array('//storage/done/order'),'linkOptions'=>array('class'=>'collection-item'));
                                              
                     }
                   
                     if (Yii::app()->user->checkAccess('manufactory')){
-                        $menu_arr[] = array('label'=>'Зробити замовлення для виготовлення продукції', 'url'=>array('/order/create'));
-                        $menu_arr[] = array('label'=>'Журнал активних замовлень', 'url'=>array('/order/index'));
+                        $menu_arr[] = array('label'=>'Зробити замовлення для виготовлення продукції', 'url'=>array('/order/create'),'linkOptions'=>array('class'=>'collection-item'));
+                        $menu_arr[] = array('label'=>'Журнал активних замовлень', 'url'=>array('/order/index'),'linkOptions'=>array('class'=>'collection-item'), 'visible'=>!Yii::app()->user->checkAccess('admin'));
                     }
                     
-                    $menu_arr[] = array('label'=>'Стан виробництва продукції', 'url'=>array('/archiveproduct/admin'));
+                    $menu_arr[] = array('label'=>'Стан виробництва продукції', 'url'=>array('/archiveproduct/admin'),'linkOptions'=>array('class'=>'collection-item'));
                  }
                     
                  
@@ -146,9 +146,9 @@ class User extends CActiveRecord
                 //Виводимо для кожного користувача своє меню
                     if (Yii::app()->user->checkAccess('storage')){
                           
-                        $menu_arr[] = array('label'=>'Склад матеріалів', 'url'=>array('//storage/resource/index'));
-                        $menu_arr[] = array('label'=>'Додати новий матеріал', 'url'=>array('//storage/resource/create')); 
-                        $menu_arr[] = array('label'=>'Нова поставка існуючого матеріалу', 'url'=>array('//storage/archiver/create'));                       
+                        $menu_arr[] = array('label'=>'Склад матеріалів', 'url'=>array('//storage/resource/index'),'linkOptions'=>array('class'=>'collection-item'));
+                        $menu_arr[] = array('label'=>'Додати новий матеріал', 'url'=>array('//storage/resource/create'),'linkOptions'=>array('class'=>'collection-item')); 
+                        $menu_arr[] = array('label'=>'Нова поставка існуючого матеріалу', 'url'=>array('//storage/archiver/create'),'linkOptions'=>array('class'=>'collection-item'));                       
                         
                         
 	
@@ -160,8 +160,8 @@ class User extends CActiveRecord
                 
                 if($type=='product'){
                 if(Yii::app()->user->checkAccess('manufactory')){
-                    $menu_arr[] = array('label'=>'Номенклатура продукцї', 'url'=>array('//manufactory/product/index'));
-                    $menu_arr[] = array('label'=>'Створити новий продукт', 'url'=>array('//manufactory/product/create'));
+                    $menu_arr[] = array('label'=>'Номенклатура продукцї', 'url'=>array('//manufactory/product/index'),'linkOptions'=>array('class'=>'collection-item'));
+                    $menu_arr[] = array('label'=>'Створити новий продукт', 'url'=>array('//manufactory/product/create'),'linkOptions'=>array('class'=>'collection-item'));
                     
                     
                 
@@ -179,10 +179,11 @@ class User extends CActiveRecord
             
                 $menu_arr = array();
             if ($position == "right") {
-                $menu_arr[] = array('label' => 'Облік надходження матеріалів', 'url' => array('//storage/archiveR/admin'));
-                $menu_arr[] = array('label' => 'Використані матеріали', 'url' => array('//storage/done/admin'));
-                $menu_arr[] = array('label' => 'Створена продукція', 'url' => array('//archiveproduct/made'));
-                $menu_arr[] = array('label' => 'Виконані замовлення ресурс + продукт', 'url' => array('//storage/done/index'));
+                $menu_arr[] = array('label' => 'Облік надходження матеріалів', 'url' => array('//storage/archiveR/admin'),'linkOptions'=>array('class'=>'collection-item'));
+                $menu_arr[] = array('label' => 'Готова продукція та використані матеріальні ресурси', 'url' => array('//storage/done/index'),'linkOptions'=>array('class'=>'collection-item'));
+                $menu_arr[] = array('label' => 'Використані матеріали', 'url' => array('//storage/done/admin'),'linkOptions'=>array('class'=>'collection-item'));
+                $menu_arr[] = array('label' => 'Створена продукція', 'url' => array('//archiveproduct/made'),'linkOptions'=>array('class'=>'collection-item'));
+                
                 
             }
 
@@ -193,8 +194,8 @@ class User extends CActiveRecord
             
             $menu_arr = array();        
              if ($position=="right"){           
-                     $menu_arr[] = array('label'=>'Журнал користувачів', 'url'=>array('//admin/user'));  
-                    $menu_arr[] = array('label'=>'Створити користувача', 'url'=>array('//admin/user/create')); 
+                     $menu_arr[] = array('label'=>'Журнал користувачів', 'url'=>array('//admin/user'),'linkOptions'=>array('class'=>'collection-item'));  
+                    $menu_arr[] = array('label'=>'Створити користувача', 'url'=>array('//admin/user/create'),'linkOptions'=>array('class'=>'collection-item')); 
              }
          
             return $menu_arr; 

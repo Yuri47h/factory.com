@@ -23,13 +23,14 @@
 
         <!-- Template style -->
         <link href="/css/style.css" rel="stylesheet">
+        <link href="/css/hover.css" rel="stylesheet">
         
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <?php //Присвоюємо id ?>
-<body id="<?php echo Yii::app()->controller->action->id ?>" >
+<body id="<?php echo Yii::app()->controller->action->id?>"  class="<?php echo Yii::app()->controller->id.'_'.Yii::app()->controller->action->id?>" >
 
 <div  id="page">
     <div class="navbar z-depth-2 info-color">
@@ -37,19 +38,18 @@
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
-	<div id="container ">
+	<div class="container ">
 		<?php $this->widget('zii.widgets.CMenu',array(
                      'htmlOptions' => array(
                     'class'=>'nav navbar-nav',
                         ),
 			'items'=>array(
-				array('label'=>'Головна', 'url'=>array('/site/index')),
-				array('label'=>'Додаткова сторінка', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Контакти', 'url'=>array('/site/contact')),
-                                array('label'=>'Адмінка', 'url'=>array('/admin'),'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'Ввійти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Вийти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-                                array('label'=>'Реєстрація', 'url'=>array('/site/registration'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Головна', 'url'=>array('/site/index'),'linkOptions'=>array('class'=>'box-shadow-outset'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>"Зворотній зв'язок", 'url'=>array('/site/contact'),'linkOptions'=>array('class'=>'box-shadow-outset')),
+                                array('label'=>'Адміністрування', 'url'=>array('/admin'),'linkOptions'=>array('class'=>'box-shadow-outset'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Ввійти', 'url'=>array('/site/login'),'linkOptions'=>array('class'=>'box-shadow-outset'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Вийти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'),'linkOptions'=>array('class'=>'box-shadow-outset'), 'visible'=>!Yii::app()->user->isGuest),
+                                array('label'=>'Реєстрація', 'url'=>array('/site/registration'),'linkOptions'=>array('class'=>'box-shadow-outset'), 'visible'=>Yii::app()->user->isGuest),
 			),
 		)); ?>
 	</div><!-- mainmenu -->
@@ -60,17 +60,19 @@
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
-
+                
+       
 	<?php echo $content; ?>
-
+      
 	<div class="clear"></div>
 
-	<div id="footer">
+	
+
+</div><!-- page -->
+<div id="footer" class="footer-copyright page-footer info-color darken-1">
 		&copy; <?php echo date('Y'); ?> by Yuri Hayduchyk.<br/>
 		Всі права захищені.<br/>
 	</div><!-- footer -->
-
-</div><!-- page -->
 
 </body>
 </html>

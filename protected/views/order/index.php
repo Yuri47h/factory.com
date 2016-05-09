@@ -1,13 +1,3 @@
-<?php
-/* @var $this OrderController */
-/* @var $dataProvider CActiveDataProvider */
-
-$this->breadcrumbs=array(
-	'Замовлення',
-);
-
-
-?>
 
 <h1>Замовлення</h1>
 

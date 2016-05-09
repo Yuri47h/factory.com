@@ -1,16 +1,20 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/users'); ?>
-<div class="span-19">
+
+<div class="span-19 col-lg-8">
 	<div id="content">
 		<?php echo $content; ?>
 	</div><!-- content -->
 </div>
-<div class="span-5 last">
+<div class="span-5 last col-md-4">
 	<div id="sidebar">
 	<?php
             if(Yii::app()->user->checkAccess('admin')){
 		$this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>'Операції з корстувачами',
+                     'htmlOptions'=>array('class'=>'collection card-panel'),
+                        
+                        
 		));
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>  User::menu_admin('right'),
@@ -20,6 +24,7 @@
             }
                 $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>'Виробництво',
+                     'htmlOptions'=>array('class'=>'collection card-panel'),
 		));
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>  User::menu('right', 'order'),
@@ -31,6 +36,7 @@
                 
                 $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>'Операції з матеріалами',
+                     'htmlOptions'=>array('class'=>'collection card-panel'),
 		));
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>  User::menu('right','resource'),
@@ -42,15 +48,17 @@
                 
                 $this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>'Операції з продукцією',
+                     'htmlOptions'=>array('class'=>'collection card-panel'),
 		));
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>  User::menu('right', 'product'),
-			'htmlOptions'=>array('class'=>'operations'),
+			'htmlOptions'=>array('class'=>'operations' ),
 		));
 		$this->endWidget();
             
 		$this->beginWidget('zii.widgets.CPortlet', array(
 			'title'=>'Архів',
+                    'htmlOptions'=>array('class'=>'collection card-panel'),
 		));
 		$this->widget('zii.widgets.CMenu', array(
 			'items'=>  User::menu_archive('right'),

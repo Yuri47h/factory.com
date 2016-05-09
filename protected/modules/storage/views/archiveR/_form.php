@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Поля з <span class="required">*</span> є обов'яхковими.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -34,7 +34,7 @@
 	
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Додати'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Додати' : 'Додати'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

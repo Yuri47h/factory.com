@@ -42,7 +42,7 @@
 
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Створити' : 'Зберегти'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Надіслати запит' : 'Зберегти'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

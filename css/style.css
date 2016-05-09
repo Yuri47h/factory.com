@@ -1,3 +1,67 @@
+/*index style*/
+
+.site_index{
+    background: url(/images/background/vqbnqb2.jpg) no-repeat;
+    
+}
+.site_index>#page{
+        background: rgba(119, 119, 119, 0.44);
+}
+
+.site_index #content {
+    height: 655px;
+}
+/*default index style*/
+.default_index .col-lg-8{
+    display: none;
+}
+.default_index .col-md-4 {
+    width: 100% !important;
+        height: 655px;
+        text-align: center;
+}
+.default_index .card-panel{
+    width: 280px;
+    float: left;
+    margin: 30px 13px;
+    text-align: left;
+}
+.default_index #sidebar{
+    margin: auto;
+    display: inline-flex;
+}
+
+/*footer*/
+#footer{
+    height: 50px;
+}
+/*logo*/
+#logo
+{
+    float: right;
+	padding: 7px 47px;
+	font-size: 235%;
+        background: #DD4B39;
+        color:white;
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.56);
+}
+
+#registration{
+    background: url(/images/background/night.jpg) no-repeat;
+    
+}
+#login{
+    background: url(/images/background/day.jpg) no-repeat;
+    
+}
+#login>#page{
+       height: 160px;
+}
+
+
+div#footer{
+    color: rgba(255, 255, 255, 1);   
+} 
 .sidebar {
     margin-top: 40px;
 }
@@ -33,4 +97,106 @@ line-height: 25px;
 footer.page-footer a {
 color: #fff;
 font-size: 15px;
+}
+/*input*/
+input[type="submit"] {
+    border: 0 solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+    outline: 1px solid;
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 0px;
+    text-shadow: none;
+    -webkit-transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+    outline-color: #4CAF50;
+    outline-offset: 0px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #4CAF50;
+    cursor: pointer;
+    display: block;
+    line-height: 45px;
+    max-width: 270px;
+    margin: 10px 0 0 0;
+    position: relative;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 100%;
+    background: white;
+}
+input[type="submit"]:hover {
+    border: 1px solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+    outline-offset: 15px;
+    outline-color: rgba(255, 255, 255, 0);
+}
+/*mycss*/
+
+.active>.collection-item {
+    box-shadow: 0 0px 12px 1px rgba(0, 0, 0, 0.56);
+    width: 90%;
+    margin: auto;
+}
+.card-panel_my{
+    transition: box-shadow 0.25s;
+    margin: 0.5rem 0 1rem 0;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.62);
+}
+.text.card-panel_my {
+    padding: 70px;
+}
+.button-column>a>img{
+    display: inline;
+}
+th#user-grid_c5 {
+    width: 100px;
+}
+th#product-grid_c2 {
+    width: 100px;
+}
+th#archive-r-grid_c0 {
+    width: 100px;
+}
+th#done-grid_c0 {
+    width: 100px;
+}
+
+ul.yiiPager {
+    font-size: 11px;
+    border: 0;
+    margin: 3px 2px 8px 11px !important;
+    padding: 0;
+    line-height: 100%;
+    display: inline;
+    text-align: right;
+    float: right;
+}
+
+.done_list {
+    padding: 10px 60px 5px 60px;
+    margin: 0px 0 25px 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.done_product {
+    text-align: center;
+    padding: 5px 0px 5px 0px;
+    background-color: #33b5e5;
+    color: white;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.col-md-4 {
+    width: 24.333333% !important;
+}
+.col-lg-8 {
+    width: 68.666667% !important;
+    margin-left: 90px;
+}
+
+h1 {
+    font-size: 4.2rem;
+    line-height: 110%;
+    margin: 0.1rem 0 0.68rem 0;
 }

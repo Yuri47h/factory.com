@@ -1,3 +1,18 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+* html .page-wrapper {
+    height: 100%;
+}
+#login .clear {
+    height: 157px;
+}
+#login .box {
+    margin-top: 50px;
+}
 body
 {
 	margin: 0;
@@ -6,17 +21,14 @@ body
 	font: normal 10pt Arial,Helvetica,sans-serif;
 	background: #EFEFEF;
 }
-#registration{
-    background: url(/images/background/night.jpg) no-repeat;
-    
+div#content {
+    margin: 0 50px;
 }
-#page
-{
+.wide.form input {
+    width: 145px;
+}
 
-	margin-bottom: 5px;
-	background: white;
-	border: 1px solid #C9E0ED;
-}
+
 
 #header
 {
@@ -24,10 +36,7 @@ body
 	padding: 0;
 }
 
-#content
-{
-    padding: 20px;
-}
+
 
 #sidebar
 {
@@ -36,19 +45,12 @@ body
 
 #footer
 {
-	padding: 10px;
-	margin: 10px 20px;
-	font-size: 0.8em;
+
 	text-align: center;
-	border-top: 1px solid #C9E0ED;
 }
 
-#logo
-{
-    float: right;
-	padding: 10px 20px;
-	font-size: 200%;
-}
+
+
 
 #mainmenu
 {
@@ -153,36 +155,38 @@ div.search-form
 {
 	padding: 10px;
 	margin: 10px 0;
-	background: #eee;
+}
+.grid-view table.items th, .grid-view table.items td {
+    font-size: 1.1em !important;
+    border: 1px white solid;
+    padding: 0.3em;
+}
+.grid-view table.items th {
+    color: white;
+    background: #33b5e5 !important;
+    text-align: center;
 }
 
-.portlet
-{
-
-}
 
 .portlet-decoration
 {
 	padding: 3px 8px;
-	background: #B7D6E7;
-	border-left: 5px solid #6FACCF;
+	background: #DD4B39;
+	border-left: 10px solid #33b5e5;
+        color: white;
 }
 
 .portlet-title
 {
-	font-size: 12px;
-	font-weight: bold;
-	padding: 0;
-	margin: 0;
-	color: #298dcd;
+    font-size: 24px;
+    line-height: 110%;
+    margin: 1.14rem 0 0.912rem 0;
 }
 
 .portlet-content
 {
 	font-size:0.9em;
 	margin: 0 0 15px 0;
-	padding: 5px 8px;
-	background:#EFFDFF;
 }
 
 .portlet-content ul
@@ -196,7 +200,7 @@ div.search-form
 
 .portlet-content li
 {
-	padding: 2px 0 4px 0px;
+	
 }
 
 .operations
@@ -209,6 +213,7 @@ div.search-form
 .operations li
 {
 	padding-bottom: 2px;
+        width: 100%;
 }
 
 .operations li a

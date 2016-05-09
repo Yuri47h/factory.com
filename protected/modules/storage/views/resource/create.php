@@ -1,12 +1,4 @@
-<?php
-/* @var $this ResourceController */
-/* @var $model Resource */
 
-$this->breadcrumbs=array(
-	'Resources'=>array('index'),
-	'Create',
-);
-?>
 <?php if(Yii::app()->user->hasFlash('resource_is')): ?>
 
 <div class="flash-success">

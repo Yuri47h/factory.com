@@ -1,5 +1,5 @@
 <?php /* @var $this Controller */ ?>
-<?php $this->beginContent('//layouts/main'); ?>
+<?php $this->beginContent('//layouts/users'); ?>
 <div class="span-19">
 	<div id="content">
 		<?php echo $content; ?>

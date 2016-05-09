@@ -1,11 +1,5 @@
 <?php
-/* @var $this ArchiveproductController */
-/* @var $model Archiveproduct */
 
-$this->breadcrumbs=array(
-	'Archiveproducts'=>array('index'),
-	'Manage',
-);
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -35,18 +29,23 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->searchMade(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
                 'kod_p'=>array(
                     'name'=>'kod_p',
                     'value'=>'$data->product->name',
                 ),
-		'quantity',
-		'cost',
+		'quantity'=>array(
+                    'name'=>'quantity',
+                    'value'=>'$data->quantity." шт."',
+                ),
+		'cost'=>array(
+                    'name'=>'cost',
+                    'value'=>'$data->cost." грн"',
+                ),
                 'date' => array(
                     'name' => 'date',
                     'value' => 'date("j.m.Y H:m", $data->date)',
                     'filter' => FALSE,
-                    'headerHtmlOptions' => array('width' => '100'),
+                    'headerHtmlOptions' => array('width' => '200'),
                 ),
 	),
 )); ?>

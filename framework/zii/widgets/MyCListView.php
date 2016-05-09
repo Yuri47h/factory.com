@@ -19,10 +19,12 @@ public function renderItems()
 			{
                             //перевіряємо чи це перший елемент і виводимо початок блоку
                             if (!$order_id){
-                                echo '<div class="view_order" ';
-                                
+                                echo '<div class="view_order done_list" >';
+                                echo '<div class="done_product" >';
                                 echo '<div class="order_id" > Номер замовлення: '.$item->order_id.'</div>';
                                 echo '<div class="title_order" > Продукт, що буде виготовлятися:'.$item->product->name.'</div>';
+                                echo '<div class="title_order" > Кількість: '.$item->archiveproduct->quantity.'</div>';
+                                  echo '</div>';
                                 //Додаємо кнопку відміни замовлення
                                 if(Yii::app()->user->checkAccess('manufactory')){
                                      echo CHtml::form();
@@ -35,9 +37,12 @@ public function renderItems()
                             //якщо не збігається розбиваємо на блоку та виводимо необхідну інформацію
                             if ($order_id != $oreder_id_next ){
                                 echo '</div>';
-                                echo '<div class="view_order" >';
+                                echo '<div class="view_order done_list" >';
+                                echo '<div class="done_product" >';
                                 echo '<div class="order_id" > Номер замовлення: '.$item->order_id.'</div>';
                                 echo '<div class="title_order" > Продукт, що буде виготовлятися:'.$item->product->name.'</div>';
+                                echo '<div class="title_order" > Кількість: '.$item->archiveproduct->quantity.'</div>';
+                                echo '</div>';
                                  //Додаємо кнопку відміни замовлення
                                 if(Yii::app()->user->checkAccess('manufactory')){
                                     echo CHtml::endForm();
@@ -63,6 +68,7 @@ public function renderItems()
 		else
 			$this->renderEmptyText();
 		echo CHtml::closeTag($this->itemsTagName);
+                echo '</div>';
 	}
 }
 

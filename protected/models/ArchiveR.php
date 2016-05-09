@@ -35,6 +35,11 @@ class ArchiveR extends CActiveRecord
 			array('id, kod_r, quantity, total, date', 'safe', 'on'=>'search'),
 		);
 	}
+         public function primaryKey()
+	{
+		return 'id';
+		
+	}
 
 	/**
 	 * @return array relational rules.

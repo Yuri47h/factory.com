@@ -49,7 +49,7 @@ class Done extends CActiveRecord
                     'product'=> array(self::HAS_MANY, 'Product','kod_p', 'through' =>'archiveproduct'),
 		);
 	}
-         public function primaryKey()
+        public function primaryKey()
 	{
 		return 'order_id';
 		
