@@ -120,8 +120,7 @@ class Product extends CActiveRecord
             if ($this->isNewRecord) {
                 $x=0;
                 // Якщо ми додаємо товар,  то потрібно додати й необхідні зв"язки з ресурами
-               
-                //функція рахує кількість існуючих значнь quantity
+                //функція рахує кількість існуючих значень quantity
                 function NumberArr($arr, $x) {
                     if (($arr['quantity'.$x])!=''){
                         $x++;
@@ -132,7 +131,6 @@ class Product extends CActiveRecord
                 $number = NumberArr($_POST, $x);
                 //проходимо циклом по існуючим значенням та коду ресурсу і додаємо це в таблицю relation
                 for($i = 0; $i<$number; $i++){
-                    
                     $relation = new Relation();
                     $relation->quantity = $_POST['quantity'.$i];
                     $relation->kod_r = $_POST['kod_r'.$i];
@@ -140,7 +138,8 @@ class Product extends CActiveRecord
                     $relation->save();
                 }
                 
-            }   
+            }
+            
             // якщо продукт оновлюється
             else {  
                 foreach ($_POST['resources'] as $one) {

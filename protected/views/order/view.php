@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Order #<?php echo $model->id; ?></h1>
+<h1>Перегляд замовлення #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -24,6 +24,9 @@ $this->menu=array(
 		'id',
 		'kod_p',
 		'quantity',
-		'date',
+		'date' => array(
+                    'name' => 'date',
+                    'value' => date("j.m.Y H:i", $model->date),  
+                ),
 	),
 )); ?>

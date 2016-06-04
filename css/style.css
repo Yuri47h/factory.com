@@ -32,6 +32,14 @@
 }
 
 /*footer*/
+#registration>#footer{
+	height: 78px;
+	text-align:center;
+}
+#login>#page>#footer{
+	height: 78px;
+	text-align:center;
+}
 #footer{
     height: 50px;
 }

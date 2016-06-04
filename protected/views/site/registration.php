@@ -30,7 +30,7 @@
     // See class documentation of CActiveForm for details on this.
     'enableAjaxValidation'=>false,
 )); ?>
-    <div class="title">Поля з <span class="required">*</span> є обов'язковими.</div>
+
 
     <?php echo $form->errorSummary($model ); ?>
     

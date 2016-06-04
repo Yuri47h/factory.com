@@ -62,8 +62,7 @@ class ResourceController extends Controller
 
 		if(isset($_POST['Resource']))
 		{
-                    $model->attributes=$_POST['Resource'];
-                    
+                    $model->attributes=$_POST['Resource'];                    
                     //перевірка чи існує ресурс с таким кодом, якщо так виводить флеш повідомлення
                     if(Resource::model()->findByPk($_POST['Resource']['kod_r'])){
                         Yii::app()->user->setFlash('resource_is','Ресурс с таким кодом вже є, будь ласка змініть код ресурсу');
@@ -73,15 +72,12 @@ class ResourceController extends Controller
                             if ($_POST['Resource']['quantity']!=''){
                                 $archive->attributes=$_POST['Resource'];
                                 $archive->quantity=$_POST['Resource']['quantity'];
-                                $archive->total = $model->price*$archive->quantity;
-                               
+                                $archive->total = $model->price*$archive->quantity;                               
                                 if($archive->save()){
-                                    $this->redirect(array('index'));
-                                    
+                                    $this->redirect(array('index'));                                    
                                 }
                             } else {
                                 $this->redirect(array('index'));
-
                             }
                         }
 		}

@@ -71,6 +71,7 @@ class OrderController extends Controller
                     
                     
                     $product->attributes =$_POST['Order'];
+                    //розрахунок ціни
                     $product->cost = Product::costProduct($product->kod_p)*$product->quantity;
                    
                     $product->save();
@@ -84,6 +85,7 @@ class OrderController extends Controller
                         $model->order_id = $product->id;
                         //Вираховуємо необхідну кількість ресурсів
                         $model->quantity = $one->quantity*$_POST['Order']['quantity'];
+                        //розраховуємо вартість ресурсів
                         $model->cost = $model->quantity*Resource::price($model->kod_r);
                         $model->save();
                 

@@ -3,7 +3,7 @@
 /* @var $model ArchiveR */
 
 $this->breadcrumbs=array(
-	'Archive Rs'=>array('index'),
+	'Журнал надходжень матеріалів'=>array('index'),
 	$model->id,
 );
 
@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View ArchiveR #<?php echo $model->id; ?></h1>
+<h1>Перегляд ресурсу #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -25,6 +25,9 @@ $this->menu=array(
 		'kod_r',
 		'quantity',
 		'total',
-		'date',
+		'date' => array(
+                    'name' => 'date',
+                    'value' => date("j.m.Y H:i", $model->date),  
+                ),
 	),
 )); ?>

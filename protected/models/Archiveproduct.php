@@ -61,7 +61,7 @@ class Archiveproduct extends CActiveRecord
 			'quantity' => 'Кількість',
 			'cost' => 'Вартість',
 			'date' => 'Дата',
-                        'status'=>'Продукція виготовлена',
+                        'status'=>'Статус виготовлення',
 		);
 	}
 

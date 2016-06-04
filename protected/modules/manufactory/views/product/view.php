@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Product #<?php echo $model->kod_p; ?></h1>
+<h1>Перегляд продукту #<?php echo $model->kod_p; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

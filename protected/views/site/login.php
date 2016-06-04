@@ -14,7 +14,6 @@
 	),
 )); ?>
 
-	 <div class="title">Поля з <span class="required">*</span> є обов'язковими.</div>
 
 	<div class="input">
 		<?php echo $form->labelEx($model,'username'); ?>
