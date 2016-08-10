@@ -1,3 +1,3 @@
 # factory.com
-My first own project on yii framework
-Automation of production and recording material resources
+The system of production automation and metering of material resources. Built on Yii Framework.
+
